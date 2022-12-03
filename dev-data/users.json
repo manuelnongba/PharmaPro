@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Emmanuel Anongba",
+    "email": "eanongba19@gmail.com",
+    "role": "admin",
+    "password": "helloworld"
+  },
+  {
+    "name": "Roland Mireku",
+    "email": "roland@gmail.com",
+    "password": "helloworld"
+  }
+]
