@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "client": "npm run start --prefix pharma-pro",
+    "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run start\" \"npm run client\""
   },
   "author": "Emmanuel Anongba",

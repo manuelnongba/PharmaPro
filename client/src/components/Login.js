@@ -1,0 +1,97 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { getUser } from "../actions";
+import { getLoggedInUser } from "../actions";
+import axios from "axios";
+
+const Login = (props) => {
+  // Declare a new state variable, which we'll call "formData"
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+
+  const handleInputChange = (event) => {
+    // Update the formData state with the new values from the input fields
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    props.getUser(formData);
+
+    try {
+      //   const res = await axios({
+      //     method: "POST",
+      //     url: "/api/login",
+      //     data: formData,
+      //   });
+      // console.log(res);
+      // role.push(res);
+      // if (res.data.user.role === "admin") {
+      //   navigate("/admin/dashboard");
+      // } else {
+      //   navigate("/attendant/dashboard");
+      // }
+    } catch (error) {}
+
+    // TODO: Add code to submit the formData to a server or call an authentication function
+
+    // Clear the form fields after submission
+    setFormData({
+      username: "",
+      password: "",
+    });
+  };
+
+  useEffect(() => {
+    console.log(props);
+    if (props.user && props.user.user.role === "admin") {
+      navigate("/admin/dashboard");
+    }
+    if (props.user && props.user.user.role === "attendant") {
+      navigate("/attendant/dashboard");
+    }
+  }, [props, navigate]);
+
+  return (
+    <div>
+      <form className="form" onSubmit={handleSubmit}>
+        <label>
+          Username:
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+          />
+        </label>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
+};
+
+const mapStateToProps = (state) => {
+  console.log(state);
+  return { user: state.user };
+};
+
+export default connect(mapStateToProps, { getUser, getLoggedInUser })(Login);

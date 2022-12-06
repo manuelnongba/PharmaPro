@@ -26,7 +26,7 @@ const users = JSON.parse(fs.readFileSync("./dev-data/users.json", "utf-8"));
 const importData = async () => {
   try {
     await User.create(users);
-    console.log("Users successfully data");
+    console.log("Users successfully imported");
     process.exit();
   } catch (err) {
     console.log(err);

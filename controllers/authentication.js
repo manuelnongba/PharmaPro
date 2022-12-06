@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const { promisify } = require("util");
 
 const signToken = (id, role) =>
   jwt.sign({ id, role }, process.env.JWT_SECRET, {
@@ -51,9 +52,22 @@ exports.login = async (req, res, next) => {
   }
 };
 
-exports.cookie = (req, res, next) => {
-  res.status(200).json({
-    jwt: req.cookies.jwt,
-  });
+exports.isLoggedIn = async (req, res, next) => {
+  if (req.cookies.jwt) {
+    const decoded = await promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET
+    );
+
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
+      return next();
+    }
+    res.status(200).json({
+      user: currentUser,
+    });
+    next();
+  }
+
   next();
 };
