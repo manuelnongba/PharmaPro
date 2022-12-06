@@ -12,5 +12,12 @@
     "email": "roland@gmail.com",
     "role": "attendant",
     "password": "helloworld"
+  },
+  {
+    "name": "Emmanuel Teye",
+    "username": "mantse",
+    "email": "teye@gmail.com",
+    "role": "attendant",
+    "password": "helloworld"
   }
 ]
