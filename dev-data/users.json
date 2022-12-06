@@ -2,11 +2,13 @@
   {
     "name": "Emmanuel Anongba",
     "email": "eanongba19@gmail.com",
+    "username": "manuelnongba",
     "role": "admin",
     "password": "helloworld"
   },
   {
     "name": "Roland Mireku",
+    "username": "robobo",
     "email": "roland@gmail.com",
     "password": "helloworld"
   }
