@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { getUser } from "../actions";
-import { getLoggedInUser } from "../actions";
 import axios from "axios";
 
 const Login = (props) => {
@@ -53,11 +52,11 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    console.log(props);
-    if (props.user && props.user.user.role === "admin") {
+    if (!props.user) {
+      <div></div>;
+    } else if (props.user.user.role === "admin") {
       navigate("/admin/dashboard");
-    }
-    if (props.user && props.user.user.role === "attendant") {
+    } else if (props.user.user.role === "attendant") {
       navigate("/attendant/dashboard");
     }
   }, [props, navigate]);
@@ -94,4 +93,4 @@ const mapStateToProps = (state) => {
   return { user: state.user };
 };
 
-export default connect(mapStateToProps, { getUser, getLoggedInUser })(Login);
+export default connect(mapStateToProps, { getUser })(Login);

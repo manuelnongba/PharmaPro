@@ -1,18 +1,26 @@
 import { Outlet, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { getUser } from "../actions";
+import { getLoggedInUser } from "../actions";
+import { useEffect } from "react";
 
-const PrivateRoutesAttendant = ({ user }) => {
-  console.log(user);
-  return user && user.user.role === "attendant" ? (
-    <Outlet />
-  ) : (
-    <Navigate to="/login" />
-  );
+const PrivateRoutesAttendant = ({ currentUser, getLoggedInUser }) => {
+  useEffect(() => {
+    getLoggedInUser();
+  }, [getLoggedInUser]);
+
+  console.log(currentUser);
+  if (!currentUser) {
+    //login button
+    return <div></div>;
+  } else if (currentUser && currentUser.user.role === "attendant") {
+    return <Outlet />;
+  }
 };
 
 const mapStateToProps = (state) => {
   console.log(state);
-  return { user: state.user };
+  return { currentUser: state.currentUser };
 };
-export default connect(mapStateToProps, { getUser })(PrivateRoutesAttendant);
+export default connect(mapStateToProps, { getLoggedInUser })(
+  PrivateRoutesAttendant
+);

@@ -12,6 +12,7 @@ const App = () => {
       <BrowserRouter>
         <div>
           <PrivateRoutes />
+          <PrivateRoutesAttendant />
           <Routes>
             <Route element={<PrivateRoutes />}>
               <Route element={<AdminPage />} path="/admin/dashboard" exact />

@@ -8,17 +8,16 @@ const PrivateRoutes = ({ currentUser, getLoggedInUser }) => {
   // useEffect(() => {
   //   // setUser(props.currentUser);
   // }, []);
+
   useEffect(() => {
     getLoggedInUser();
-  }, []);
+  }, [getLoggedInUser]);
 
   console.log(currentUser);
   if (!currentUser) {
     return <div></div>;
   } else if (currentUser && currentUser.user.role === "admin") {
     return <Outlet />;
-  } else {
-    return <Navigate to="/login" />;
   }
 };
 
