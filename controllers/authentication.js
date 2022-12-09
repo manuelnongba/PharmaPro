@@ -7,9 +7,9 @@ const signToken = (id, role) =>
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
-exports.home = async (req, res, next) => {
-  res.send("Arrived");
-};
+// exports.home = async (req, res, next) => {
+//   res.send("Arrived");
+// };
 
 exports.login = async (req, res, next) => {
   try {

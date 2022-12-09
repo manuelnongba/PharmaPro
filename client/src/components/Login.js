@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { getUser } from "../actions";
-import axios from "axios";
+import PrivateRoutes from "../utils/PrivateRoutes";
+import PrivateRoutesAttendant from "../utils/PrivateRoutesAttendant";
 
 const Login = (props) => {
   // Declare a new state variable, which we'll call "formData"
@@ -26,7 +27,6 @@ const Login = (props) => {
     event.preventDefault();
 
     props.getUser(formData);
-
     try {
       //   const res = await axios({
       //     method: "POST",
@@ -84,12 +84,13 @@ const Login = (props) => {
         </label>
         <button type="submit">Login</button>
       </form>
+      <PrivateRoutes />
+      <PrivateRoutesAttendant />
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return { user: state.user };
 };
 

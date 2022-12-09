@@ -3,6 +3,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const userRouter = require("./routes/userRoutes");
 const cookieParser = require("cookie-parser");
+const productRouter = require("./routes/productRoutes");
 
 const app = express();
 app.use(express.json());
@@ -35,6 +36,8 @@ mongoose
   .then((con) => console.log("DB successfully connected!"));
 
 app.use("/", userRouter);
+
+app.use("/", productRouter);
 
 const port = 8000;
 app.listen(port, () => {
