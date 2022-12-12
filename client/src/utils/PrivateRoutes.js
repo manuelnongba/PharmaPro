@@ -9,7 +9,6 @@ const PrivateRoutes = ({ currentUser, getLoggedInUser }) => {
     getLoggedInUser();
   }, [getLoggedInUser]);
 
-  console.log(currentUser);
   if (!currentUser || window.location.pathname === "/login") {
     return <div></div>;
   } else if (currentUser && currentUser.user.role !== "admin") {

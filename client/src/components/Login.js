@@ -26,6 +26,7 @@ const Login = (props) => {
     // Prevent the default form submission behavior
     event.preventDefault();
 
+    // TODO: Add code to submit the formData to a server or call an authentication function
     props.getUser(formData);
     try {
       //   const res = await axios({
@@ -41,8 +42,6 @@ const Login = (props) => {
       //   navigate("/attendant/dashboard");
       // }
     } catch (error) {}
-
-    // TODO: Add code to submit the formData to a server or call an authentication function
 
     // Clear the form fields after submission
     setFormData({

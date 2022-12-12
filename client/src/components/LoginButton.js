@@ -1,11 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import PrivateRoutes from "../utils/PrivateRoutes";
+import PrivateRoutesAttendant from "../utils/PrivateRoutesAttendant";
 
 const LoginButton = () => {
   return (
-    <NavLink to="/login">
-      <button>Login</button>
-    </NavLink>
+    <div>
+      <NavLink to="/login">
+        <button>Login</button>
+      </NavLink>
+      {/* <PrivateRoutes /> */}
+      <PrivateRoutesAttendant />
+    </div>
   );
 };
 export default LoginButton;

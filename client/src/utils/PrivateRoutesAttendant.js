@@ -9,13 +9,17 @@ const PrivateRoutesAttendant = ({ currentUser, getLoggedInUser }) => {
     getLoggedInUser();
   }, [getLoggedInUser]);
 
-  console.log(currentUser);
-
   if (!currentUser || window.location.pathname === "/login") {
     return <div></div>;
   } else if (currentUser && currentUser.user.role !== "attendant") {
+    if (window.location.pathname === "/") {
+      return <Navigate to="/admin/dashboard" />;
+    }
     return <LoginButton />;
   } else if (currentUser && currentUser.user.role === "attendant") {
+    if (window.location.pathname === "/") {
+      return <Navigate to="/attendant/dashboard" />;
+    }
     return <Outlet />;
   }
 };
