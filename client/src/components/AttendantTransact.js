@@ -3,14 +3,25 @@ import { connect } from "react-redux";
 import { getProducts } from "../actions";
 import AttendantHeader from "./AttendantHeader";
 import { searchProduct } from "../actions";
+import { addTransactions } from "../actions";
 
-const AttendantTransact = ({ getProducts, searchProduct, product }) => {
+const AttendantTransact = ({
+  getProducts,
+  searchProduct,
+  product,
+  addTransactions,
+}) => {
   const [formError, setFormError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResult] = useState("");
   const [lists, setLists] = useState("");
   const [removeCount, setRemoveCount] = useState(0);
   const [totalSales, setTotalSales] = useState(0);
+  const [formState, setFormState] = useState({
+    name: "",
+    quantity: null,
+    sales: null,
+  });
 
   const quantityRef = useRef();
   const selectedProductNameRef = useRef();
@@ -54,8 +65,6 @@ const AttendantTransact = ({ getProducts, searchProduct, product }) => {
     getProducts();
   }, []);
 
-  // let totalSales = 0;/
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -73,36 +82,50 @@ const AttendantTransact = ({ getProducts, searchProduct, product }) => {
     setTotalSales(totalSales + totalPrice);
 
     setRemoveCount(removeCount + 1);
-    setLists(lists + `${removeCount} -- ${result}  -- ${totalPrice},`);
+
+    setLists(
+      lists +
+        `${removeCount} -- ${result} -- ${quantityRef.current.value}  -- ${totalPrice},`
+    );
+
+    setFormState({
+      ...formState,
+      name: result,
+      quantity: quantityRef.current.value,
+      sales: totalPrice,
+    });
   };
 
-  const onClick = (id, deductedSale) => {
-    const newLists = lists.split(",").filter((el, i) => i !== id);
+  // const onClick = (id, deductedSale) => {
+  //   const newLists = lists.split(",").filter((el, i) => i !== id);
 
-    const newerLists = newLists.join(",");
+  //   const newerLists = newLists.join(",");
 
-    setLists(newerLists);
-    setTotalSales(totalSales - deductedSale);
-  };
+  //   setLists(newerLists);
+  //   setTotalSales(totalSales - deductedSale);
+  // };
 
   const displayList = lists.split(",").map((list) => {
     let id;
-    let deductedSale;
+    // let deductedSale;
     if (list) {
       id = list.split(" ")[0] * 1;
-      deductedSale = list.split(" ")[5];
+      // deductedSale = list.split(" ")[5];
     }
     return (
       <h3 key={id}>
         {list}
-        <button onClick={() => onClick(id, deductedSale)}>remove</button>
+        {/* <button onClick={() => onClick(id, deductedSale)}>remove</button> */}
       </h3>
     );
   });
 
   displayList.pop();
 
-  console.log(lists);
+  if (formState.name)
+    setTimeout(() => {
+      addTransactions(formState);
+    }, 10 * 1000);
 
   return (
     <div>
@@ -143,17 +166,23 @@ const AttendantTransact = ({ getProducts, searchProduct, product }) => {
         {formError && <p className="error">{formError}</p>}
         <input type="submit" value="Add Item" />
       </form>
-      <h3>No -- Name -- Sales </h3>
+      <h3>No -- Name -- Quantity -- Sales </h3>
       {displayList}
       <h2>GH¢{totalSales}</h2>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return { products: state.getProducts, product: state.findProduct };
+const mapStateToProps = (state, ownProps) => {
+  return {
+    products: state.getProducts,
+    product: state.findProduct,
+    transactions: state.transactions,
+  };
 };
 
-export default connect(mapStateToProps, { getProducts, searchProduct })(
-  AttendantTransact
-);
+export default connect(mapStateToProps, {
+  getProducts,
+  searchProduct,
+  addTransactions,
+})(AttendantTransact);

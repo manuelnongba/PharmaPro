@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { formToJSON } from "axios";
 
 export const getUser = (formData) => async (dispatch) => {
   const response = await axios({
@@ -44,4 +44,20 @@ export const searchProduct = (term) => async (dispatch) => {
   const response = await axios.get(`/api/searchproduct/${term}`);
 
   dispatch({ type: "SEARCH_PRODUCT", payload: response.data });
+};
+
+export const addTransactions = (formState) => async (dispatch) => {
+  const response = await axios({
+    method: "POST",
+    url: "/api/transactions",
+    data: formState,
+  });
+
+  dispatch({ type: "ADD_TRANSACTIONS", payload: response.data });
+};
+
+export const getTransactions = () => async (dispatch) => {
+  const response = await axios.get("/api/gettransactions");
+
+  dispatch({ type: "GET_TRANSACTIONS", payload: response.data });
 };

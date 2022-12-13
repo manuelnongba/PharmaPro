@@ -4,6 +4,8 @@ import currentUserReducer from "./currentUserReducer";
 import addProductReducer from "./addProductReducer";
 import getProductsReducer from "./getProductsReducer";
 import findProductReducer from "./findProductReducer";
+import transactionsReducer from "./transactionsReducer";
+import getTransactionsReducer from "./getTransactionsReducer";
 
 export default combineReducers({
   user: userReducer,
@@ -11,4 +13,6 @@ export default combineReducers({
   addProduct: addProductReducer,
   getProducts: getProductsReducer,
   findProduct: findProductReducer,
+  transactions: transactionsReducer,
+  getTransactions: getTransactionsReducer,
 });
