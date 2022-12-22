@@ -5,14 +5,21 @@ import { getTransactions } from "../actions";
 
 const AttendantPage = ({ getTransactions, getTransactionsList }) => {
   const [trans, setTrans] = useState([]);
+  const [totalQuantity, setTotalQuantity] = useState(null);
+  const [totalSales, setTotalSales] = useState(null);
+
   useEffect(() => {
     getTransactions();
   }, []);
 
   useEffect(() => {
+    let qSum = 0;
+    let sSum = 0;
     if (getTransactionsList) {
       setTrans(
         getTransactionsList.transactions.map((trans) => {
+          qSum += trans.quantity;
+          sSum += trans.sales;
           return (
             <div key={trans._id}>
               <input value={trans.name} readOnly />
@@ -23,6 +30,8 @@ const AttendantPage = ({ getTransactions, getTransactionsList }) => {
         })
       );
     }
+    setTotalQuantity(qSum);
+    setTotalSales(sSum);
   }, [getTransactionsList]);
 
   return (

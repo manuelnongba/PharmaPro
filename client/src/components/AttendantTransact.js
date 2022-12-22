@@ -4,6 +4,7 @@ import { getProducts } from "../actions";
 import AttendantHeader from "./AttendantHeader";
 import { searchProduct } from "../actions";
 import { addTransactions } from "../actions";
+import ReactToPrint, { useReactToPrint } from "react-to-print";
 
 const AttendantTransact = ({
   getProducts,
@@ -17,11 +18,7 @@ const AttendantTransact = ({
   const [lists, setLists] = useState("");
   const [removeCount, setRemoveCount] = useState(0);
   const [totalSales, setTotalSales] = useState(0);
-  const [formState, setFormState] = useState({
-    name: "",
-    quantity: null,
-    sales: null,
-  });
+  const [formState, setFormState] = useState([]);
 
   const quantityRef = useRef();
   const selectedProductNameRef = useRef();
@@ -88,12 +85,14 @@ const AttendantTransact = ({
         `${removeCount} -- ${result} -- ${quantityRef.current.value}  -- ${totalPrice},`
     );
 
-    setFormState({
+    setFormState([
       ...formState,
-      name: result,
-      quantity: quantityRef.current.value,
-      sales: totalPrice,
-    });
+      {
+        name: result,
+        quantity: quantityRef.current.value,
+        sales: totalPrice,
+      },
+    ]);
   };
 
   // const onClick = (id, deductedSale) => {
@@ -121,11 +120,9 @@ const AttendantTransact = ({
   });
 
   displayList.pop();
+  let componentRef;
 
-  if (formState.name)
-    setTimeout(() => {
-      addTransactions(formState);
-    }, 10 * 1000);
+  console.log(formState);
 
   return (
     <div>
@@ -166,14 +163,29 @@ const AttendantTransact = ({
         {formError && <p className="error">{formError}</p>}
         <input type="submit" value="Add Item" />
       </form>
-      <h3>No -- Name -- Quantity -- Sales </h3>
-      {displayList}
+      <div ref={(el) => (componentRef = el)}>
+        <h3>No -- Name -- Quantity -- Sales </h3>
+        {displayList}
+      </div>
       <h2>GH¢{totalSales}</h2>
+
+      <ReactToPrint
+        trigger={() => {
+          return <button>Print</button>;
+        }}
+        onAfterPrint={() => {
+          addTransactions(formState);
+        }}
+        content={() => componentRef}
+        documentTitle="Sales Receipt"
+        pageStyle="print"
+      />
     </div>
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(state);
   return {
     products: state.getProducts,
     product: state.findProduct,
