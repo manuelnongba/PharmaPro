@@ -9,8 +9,6 @@ const LoginButton = () => {
       <NavLink to="/login">
         <button>Login</button>
       </NavLink>
-      {/* <PrivateRoutes /> */}
-      <PrivateRoutesAttendant />
     </div>
   );
 };

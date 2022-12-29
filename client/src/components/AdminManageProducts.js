@@ -4,28 +4,30 @@ import AdminHeader from "./AdminHeader";
 import { addProduct } from "../actions";
 import { getProducts } from "../actions";
 
-const AdminManageProducts = (props) => {
-  // Use the useState hook to manage the form state
-  useEffect(() => {
-    props.getProducts();
-  }, []);
-
-  console.log(props.products);
-
-  let productsList;
-
-  if (props.products) {
-    productsList = props.products.products.map((product) => {
-      return <div key={product._id}>{product.name}</div>;
-    });
-  }
-
+const AdminManageProducts = ({ getProducts, products, addProduct }) => {
   const [formState, setFormState] = useState({
     name: "",
+    price: "",
     dosage: "",
     unit: "mg",
     frequency: "",
   });
+  const [productsList, setProductsList] = useState();
+
+  useEffect(() => {
+    getProducts();
+  }, [getProducts]);
+
+  useEffect(() => {
+    if (products && products.message === "success") {
+      const items = products.products.map((product) => {
+        return <div key={product._id}>{product.name}</div>;
+      });
+
+      setProductsList(items);
+    }
+  }, [products]);
+
   console.log(formState);
 
   // Function to handle changes to the form fields
@@ -43,7 +45,11 @@ const AdminManageProducts = (props) => {
     event.preventDefault();
 
     // Add the drug to the database here...
-    props.addProduct(formState);
+    addProduct(formState);
+
+    alert("product added!!!");
+
+    window.location.reload();
   };
 
   return (
@@ -107,7 +113,8 @@ const AdminManageProducts = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { product: state.addProduct, products: state.getProducts };
+  console.log(state);
+  return { products: state.products };
 };
 
 export default connect(mapStateToProps, { addProduct, getProducts })(

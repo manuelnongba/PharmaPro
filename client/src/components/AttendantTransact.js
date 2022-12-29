@@ -4,12 +4,12 @@ import { getProducts } from "../actions";
 import AttendantHeader from "./AttendantHeader";
 import { searchProduct } from "../actions";
 import { addTransactions } from "../actions";
-import ReactToPrint, { useReactToPrint } from "react-to-print";
+import ReactToPrint from "react-to-print";
 
 const AttendantTransact = ({
   getProducts,
   searchProduct,
-  product,
+  products,
   addTransactions,
 }) => {
   const [formError, setFormError] = useState(null);
@@ -29,13 +29,14 @@ const AttendantTransact = ({
     if (event.target.value) {
       searchProduct(event.target.value);
     }
+    console.log(Boolean(event.target.value));
   };
-
   let productNames;
+
   let price = 0;
 
-  if (product) {
-    productNames = product.product.map((prod) => {
+  if (products && products.productList) {
+    productNames = products.productList.map((prod) => {
       if (result === prod.name) {
         price = prod.price;
       }
@@ -187,8 +188,7 @@ const AttendantTransact = ({
 const mapStateToProps = (state, ownProps) => {
   console.log(state);
   return {
-    products: state.getProducts,
-    product: state.findProduct,
+    products: state.products,
     transactions: state.transactions,
   };
 };

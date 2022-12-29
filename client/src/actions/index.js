@@ -1,4 +1,4 @@
-import axios, { formToJSON } from "axios";
+import axios from "axios";
 
 export const getUser = (formData) => async (dispatch) => {
   const response = await axios({

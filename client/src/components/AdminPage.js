@@ -3,7 +3,7 @@ import AdminHeader from "./AdminHeader";
 import { connect } from "react-redux";
 import { getTransactions } from "../actions";
 
-const AdminPage = ({ getTransactions, getTransactionsList }) => {
+const AdminPage = ({ transaction, getTransactions }) => {
   const [trans, setTrans] = useState([]);
   const [totalQuantity, setTotalQuantity] = useState(null);
   const [totalSales, setTotalSales] = useState(null);
@@ -15,9 +15,9 @@ const AdminPage = ({ getTransactions, getTransactionsList }) => {
   useEffect(() => {
     let qSum = 0;
     let sSum = 0;
-    if (getTransactionsList) {
+    if (transaction) {
       setTrans(
-        getTransactionsList.transactions.map((trans) => {
+        transaction.transactions.map((trans) => {
           qSum += trans.quantity;
           sSum += trans.sales;
           return (
@@ -32,7 +32,7 @@ const AdminPage = ({ getTransactions, getTransactionsList }) => {
     }
     setTotalQuantity(qSum);
     setTotalSales(sSum);
-  }, [getTransactionsList]);
+  }, [transaction]);
 
   return (
     <div>
@@ -53,7 +53,7 @@ const AdminPage = ({ getTransactions, getTransactionsList }) => {
 
 const mapStateToProps = (state) => {
   console.log(state);
-  return { getTransactionsList: state.getTransactions };
+  return { transaction: state.transactions };
 };
 
 export default connect(mapStateToProps, { getTransactions })(AdminPage);

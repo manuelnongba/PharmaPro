@@ -1,4 +1,4 @@
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { connect } from "react-redux";
 import { getLoggedInUser } from "../actions";
 import { useEffect } from "react";
@@ -19,6 +19,6 @@ const PrivateRoutes = ({ currentUser, getLoggedInUser }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { currentUser: state.currentUser };
+  return { currentUser: state.user };
 };
 export default connect(mapStateToProps, { getLoggedInUser })(PrivateRoutes);

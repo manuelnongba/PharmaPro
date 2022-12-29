@@ -6,18 +6,17 @@ exports.addProduct = async (req, res, next) => {
 
   res.status(200).json({
     message: "success",
-    data: {
-      product: newProduct,
-    },
+
+    product: newProduct,
   });
 };
 
 exports.addTransactions = async (req, res, next) => {
-  const transactions = await Transactions.create(req.body);
+  const transaction = await Transactions.create(req.body);
 
   res.status(200).json({
     message: "success",
-    transactions,
+    transaction,
   });
 };
 
@@ -42,12 +41,12 @@ exports.getProducts = async (req, res, next) => {
 exports.search = async (req, res, next) => {
   const { name } = req.params;
 
-  const product = await Product.find({ name: new RegExp(`^${name}`) });
+  const productList = await Product.find({ name: new RegExp(`^${name}`) });
 
-  if (!product) throw new Error("Not found");
+  if (!productList) throw new Error("Not found");
 
   res.status(200).json({
     message: "success",
-    product,
+    productList,
   });
 };

@@ -25,7 +25,7 @@ const PrivateRoutesAttendant = ({ currentUser, getLoggedInUser }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { currentUser: state.currentUser };
+  return { currentUser: state.user };
 };
 export default connect(mapStateToProps, { getLoggedInUser })(
   PrivateRoutesAttendant
