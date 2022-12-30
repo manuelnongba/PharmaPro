@@ -1,29 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminManageProducts from "./components/AdminManageProducts";
 import AdminPage from "./components/AdminPage";
 import AttendantPage from "./components/AttendantPage";
 import AttendantTransact from "./components/AttendantTransact";
-import Login from "./components/Login";
-import LoginButton from "./components/LoginButton";
+import Login from "./components/LoginPage";
+import LoginButton from "./components/Login";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import PrivateRoutesAttendant from "./utils/PrivateRoutesAttendant";
 
 const App = () => {
-  const [tS, setTs] = useState(10);
-
-  console.log(tS);
   return (
     <div>
       <BrowserRouter>
         <div>
           <Routes>
             <Route element={<PrivateRoutes />}>
-              <Route
-                element={<AdminPage totalSales={tS} />}
-                path="/admin/dashboard"
-                exact
-              />
+              <Route element={<AdminPage />} path="/admin/dashboard" exact />
               <Route
                 path="/admin/manageproducts"
                 exact
@@ -32,7 +25,7 @@ const App = () => {
             </Route>
             <Route element={<PrivateRoutesAttendant />}>
               <Route
-                element={<AttendantPage setTs={setTs} />}
+                element={<AttendantPage />}
                 path="/attendant/dashboard"
                 exact
               />

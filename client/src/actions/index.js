@@ -17,13 +17,6 @@ export const getLoggedInUser = () => async (dispatch) => {
   dispatch({ type: "CURRENT_USER", payload: response.data });
 };
 
-export const logout = () => async (dispatch) => {
-  const response = await axios.get("/api/logout");
-  console.log(response);
-
-  dispatch({ type: "LOGOUT", payload: response.data });
-};
-
 export const addProduct = (formState) => async (dispatch) => {
   const response = await axios({
     method: "POST",

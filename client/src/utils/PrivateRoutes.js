@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { connect } from "react-redux";
 import { getLoggedInUser } from "../actions";
 import { useEffect } from "react";
-import LoginButton from "../components/LoginButton";
+import LoginButton from "../components/Login";
 
 const PrivateRoutes = ({ currentUser, getLoggedInUser }) => {
   useEffect(() => {

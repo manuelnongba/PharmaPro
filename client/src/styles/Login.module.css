@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 10px;
+  background: linear-gradient(#f1f3f5, #e9ecef);
+}
+
+.login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login button {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #1c7ed6;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 96px;
+  width: 6rem;
+  height: 3rem;
+}

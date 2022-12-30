@@ -1,12 +1,15 @@
+import axios from "axios";
 import React from "react";
-import { connect } from "react-redux";
-import { logout } from "../actions";
 
-const LogoutButton = ({ logout }) => {
-  const onClick = () => {
-    logout();
+const LogoutButton = () => {
+  const onClick = async () => {
+    try {
+      const res = await axios.get("/api/logout");
 
-    window.location.replace("/login");
+      if ((res.data.status = "success")) window.location.replace("/login");
+    } catch (error) {
+      alert("Error logging out try again!");
+    }
   };
 
   return (
@@ -15,7 +18,5 @@ const LogoutButton = ({ logout }) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return { currentUser: state.currentUser };
-};
-export default connect(mapStateToProps, { logout })(LogoutButton);
+
+export default LogoutButton;
