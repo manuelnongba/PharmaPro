@@ -1,0 +1,43 @@
+.attendantpage {
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.transactions {
+  max-width: 32rem;
+  padding: 10px 3rem;
+  background-color: #fff;
+}
+
+.transactions h2 {
+  color: #495057;
+  width: 100px;
+  margin: 20px auto;
+}
+
+.transactionslist {
+  max-width: 32rem;
+  height: 80vh;
+
+  font-size: 12px;
+  color: #495057;
+  overflow: auto;
+}
+
+.transactionslist table {
+  border-collapse: collapse;
+}
+
+.transactionslist thead {
+  background-color: rgb(160, 189, 219);
+}
+
+.transactionslist th,
+td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 0.5px solid #adb5bd;
+  width: 8rem;
+}

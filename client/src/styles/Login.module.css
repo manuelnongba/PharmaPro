@@ -7,11 +7,11 @@
 body {
   font-family: sans-serif;
   font-size: 10px;
-  background: linear-gradient(#f1f3f5, #e9ecef);
+  background: #e9ecef;
 }
 
 .login {
-  height: 100vh;
+  flex-direction: column;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,12 +21,24 @@ body {
   display: inline-block;
   font-size: 16px;
   font-weight: bold;
-  background-color: #1c7ed6;
+  background-color: #12b886;
   border: none;
   cursor: pointer;
   color: #fff;
   padding: 8px 12px;
-  border-radius: 96px;
-  width: 6rem;
-  height: 3rem;
+  border-radius: 10px;
+  width: 5.5rem;
+  height: 2.5rem;
+}
+
+.logo {
+  stroke: #1c7ed6;
+  width: 5rem;
+  margin-bottom: -100px;
+}
+
+.login p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
 }

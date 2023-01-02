@@ -1,13 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
+import styles from "../styles/AttendantHeader.module.css";
 
 const AttendantHeader = () => {
   return (
-    <div className="attendant-header">
+    <div className={styles.attendantheader}>
+      <div>
+        <NavLink to="/attendant/dashboard">Dashboard</NavLink>
+        <NavLink to="/attendant/transact">Transact</NavLink>
+      </div>
       <LogoutButton />
-      <Link to="/attendant/dashboard">Dashboard</Link>
-      <Link to="/attendant/transact">Transact</Link>
     </div>
   );
 };

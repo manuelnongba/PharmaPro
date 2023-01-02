@@ -1,0 +1,80 @@
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #d4d5d6;
+  /* box-shadow: 0 0 1px rgba(255, 255, 255, 0.5); */
+}
+
+.manage {
+  font-size: 14px;
+
+  margin: 50px auto;
+
+  display: flex;
+  justify-content: center;
+  gap: 30rem;
+}
+
+.manage form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.manage input,
+select {
+  font-size: 14px;
+  width: 20rem;
+  height: 2.5rem;
+  padding: 0px 10px;
+  border: 0.1px solid gray;
+  border-radius: 10px;
+}
+
+.manage button {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #12b886;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  width: 6rem;
+  height: 2.5rem;
+  align-self: flex-end;
+  margin-top: 1rem;
+}
+
+.products {
+  height: 72vh;
+  font-size: 16px;
+  color: #495057;
+
+  border: 2px solid #495057;
+  border-radius: 6px;
+
+  display: flex;
+  flex-direction: column;
+  /* gap: 16px; */
+}
+
+.products h2 {
+  width: inherit;
+  margin: 20px auto;
+}
+
+.products p {
+  border: 0.5px solid #adb5bd;
+  padding: 20px 20px;
+  width: 20rem;
+}
+
+.productslist {
+  overflow: scroll;
+}

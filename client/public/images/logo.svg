@@ -1,26 +1,15 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import styles from "../styles/Login.module.css";
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+ 
 
-const LoginButton = () => {
-  return (
-    <div className={styles.login}>
-      <svg
-        version="1.0"
-        xmlns="http://www.w3.org/2000/svg"
-        width="360.000000pt"
-        height="360.000000pt"
-        viewBox="0 0 360.000000 360.000000"
-        preserveAspectRatio="xMidYMid meet"
-        className={styles.logo}
-      >
-        <g
-          transform="translate(0.000000,360.000000) scale(0.100000, 0.100000)"
-          fill="#1c7ed6"
-          stroke="currentColor"
-        >
-          <path
-            d="M1440 3005 c-47 -15 -134 -80 -125 -95 3 -4 -1 -10 -9 -13 -28 -11
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="360.000000pt" height="360.000000pt" viewBox="0 0 360.000000 360.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,360.000000) scale(0.100000,-0.100000)"
+fill="#1c7ed6" stroke="none">
+<path d="M1440 3005 c-47 -15 -134 -80 -125 -95 3 -4 -1 -10 -9 -13 -28 -11
 -46 -96 -47 -226 -1 -163 -12 -317 -22 -328 -5 -4 -113 -11 -240 -14 -188 -4
 -240 -9 -271 -23 -55 -23 -108 -65 -100 -78 4 -7 2 -8 -4 -4 -7 4 -22 -14 -38
 -46 -25 -49 -27 -61 -26 -163 3 -154 30 -520 44 -579 15 -68 74 -131 139 -151
@@ -29,10 +18,8 @@ const LoginButton = () => {
 221 5 229 -3 297 1 287 18 -3 6 1 7 9 4 25 -10 103 42 134 89 51 77 52 83 52
 337 0 204 2 241 16 254 8 9 16 16 17 16 8 2 434 32 517 37 104 6 106 5 137
 -21 39 -33 48 -62 64 -199 6 -59 15 -105 18 -101 10 9 30 164 31 232 0 122
--70 200 -195 216 -69 9 -498 36 -554 35 -25 0 -66 -7 -91 -14z"
-          />
-          <path
-            d="M2710 2221 c-30 -6 -24 -8 39 -14 49 -5 87 -15 110 -30 20 -12 40
+-70 200 -195 216 -69 9 -498 36 -554 35 -25 0 -66 -7 -91 -14z"/>
+<path d="M2710 2221 c-30 -6 -24 -8 39 -14 49 -5 87 -15 110 -30 20 -12 40
 -21 44 -19 5 1 6 -2 3 -7 -4 -5 -1 -21 5 -35 9 -19 8 -83 -5 -273 -23 -349
 -26 -375 -42 -400 -17 -27 5 -25 -275 -23 -261 2 -288 -3 -359 -67 -81 -73
 -90 -110 -90 -372 0 -199 -2 -219 -18 -235 -16 -14 -59 -17 -329 -22 -254 -5
@@ -46,18 +33,6 @@ const LoginButton = () => {
 -55 297 0 316 1 363 21 27 12 46 26 42 32 -3 6 -1 7 5 3 14 -9 67 47 96 99 20
 38 21 55 23 284 1 278 -1 271 82 272 25 0 125 4 221 8 148 7 183 12 228 31 79
 34 124 92 142 183 10 51 -28 608 -46 670 -3 9 -10 15 -15 12 -5 -3 -6 0 -3 8
-7 19 -38 71 -80 91 -35 16 -118 19 -186 7z"
-          />
-        </g>
-      </svg>
-
-      <p>Welcome to PharmaPro</p>
-      <p>Login with your account to continue</p>
-
-      <NavLink to="/login">
-        <button>Login</button>
-      </NavLink>
-    </div>
-  );
-};
-export default LoginButton;
+7 19 -38 71 -80 91 -35 16 -118 19 -186 7z"/>
+</g>
+</svg>

@@ -1,20 +1,27 @@
 import axios from "axios";
+import { showAlert } from "../utils/alert";
 
 export const getUser = (formData) => async (dispatch) => {
-  const response = await axios({
-    method: "POST",
-    url: "/api/login",
-    data: formData,
-  });
+  try {
+    const response = await axios({
+      method: "POST",
+      url: "/api/login",
+      data: formData,
+    });
 
-  dispatch({ type: "GET_USER", payload: response.data });
+    dispatch({ type: "GET_USER", payload: response.data });
+    showAlert("success", "Logged In Successfully!");
+  } catch (err) {
+    showAlert("error", err.response.data.message);
+  }
 };
 
 export const getLoggedInUser = () => async (dispatch) => {
-  const response = await axios.get("/api/user");
-  console.log(response);
+  try {
+    const response = await axios.get("/api/user");
 
-  dispatch({ type: "CURRENT_USER", payload: response.data });
+    dispatch({ type: "CURRENT_USER", payload: response.data });
+  } catch (err) {}
 };
 
 export const addProduct = (formState) => async (dispatch) => {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AdminHeader from "./AdminHeader";
 import { connect } from "react-redux";
 import { getTransactions } from "../actions";
+import styles from "../styles/AdminPage.module.css";
 
 const AdminPage = ({ transaction, getTransactions }) => {
   const [trans, setTrans] = useState([]);
@@ -21,11 +22,13 @@ const AdminPage = ({ transaction, getTransactions }) => {
           qSum += trans.quantity;
           sSum += trans.sales;
           return (
-            <div key={trans._id}>
-              <input value={trans.name} readOnly />
-              <input value={trans.quantity} readOnly />
-              <input value={trans.sales} readOnly />
-            </div>
+            <tbody key={trans._id}>
+              <tr>
+                <td>{trans.name}</td>
+                <td>{trans.quantity}</td>
+                <td>{trans.sales}</td>
+              </tr>
+            </tbody>
           );
         })
       );
@@ -37,22 +40,39 @@ const AdminPage = ({ transaction, getTransactions }) => {
   return (
     <div>
       <AdminHeader />
-      <h2>TRANSACTIONS</h2>
-      {trans}
-      <div>
-        <h2>Total Sales</h2>
-        {totalSales}
-      </div>
-      <div>
-        <h2>Total Quantity</h2>
-        {totalQuantity}
+      <div className={styles.adminpage}>
+        <div className={styles.transactions}>
+          <h2>TRANSACTIONS</h2>
+
+          <div className={styles.transactionslist}>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Quantity</th>
+                  <th>Sales</th>
+                </tr>
+              </thead>
+              {trans}
+            </table>
+          </div>
+        </div>
+        <div className={styles.details}>
+          <div className={styles.sales}>
+            <h2>Total Sales</h2>
+            {totalSales}
+          </div>
+          <div className={styles.quantity}>
+            <h2>Total Quantity</h2>
+            {totalQuantity}
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return { transaction: state.transactions };
 };
 

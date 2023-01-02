@@ -1,0 +1,40 @@
+.attendantheader {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  gap: 50rem;
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ced4da;
+  /* background-color: #dee2e6; */
+}
+
+.attendantheader a {
+  margin-left: 4rem;
+  text-decoration: none;
+  color: #1c7ed6;
+}
+
+.attendantheader button {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f03e3e;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 12px;
+  width: 6rem;
+  height: 2.5rem;
+}
+
+.attendantheader a:hover {
+  color: #0c4d85;
+}
+
+.attendantheader [class="active"] {
+  padding: 4px 0;
+  border-bottom: 1.5px solid rgb(38, 95, 186);
+}

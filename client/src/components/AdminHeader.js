@@ -1,13 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
+import styles from "../styles/AdminHeader.module.css";
 
 const AdminHeader = () => {
   return (
-    <div className="admin-header">
+    <div className={styles.adminheader}>
+      <div>
+        <NavLink to="/admin/dashboard">Dashboard</NavLink>
+        <NavLink to="/admin/manageproducts">Manage Products</NavLink>
+      </div>
       <LogoutButton />
-      <Link to="/admin/dashboard">Dashboard</Link>
-      <Link to="/admin/manageproducts">Manage Products</Link>
     </div>
   );
 };

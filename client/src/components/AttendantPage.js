@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AttendantHeader from "./AttendantHeader";
 import { connect } from "react-redux";
 import { getTransactions } from "../actions";
+import styles from "../styles/AttendantPage.module.css";
 
 const AttendantPage = ({ getTransactions, transactions }) => {
   const [trans, setTrans] = useState([]);
@@ -15,11 +16,13 @@ const AttendantPage = ({ getTransactions, transactions }) => {
       setTrans(
         transactions.transactions.map((trans) => {
           return (
-            <div key={trans._id}>
-              <input value={trans.name} readOnly />
-              <input value={trans.quantity} readOnly />
-              <input value={trans.sales} readOnly />
-            </div>
+            <tbody key={trans._id}>
+              <tr>
+                <td>{trans.name}</td>
+                <td>{trans.quantity}</td>
+                <td>{trans.sales}</td>
+              </tr>
+            </tbody>
           );
         })
       );
@@ -29,14 +32,29 @@ const AttendantPage = ({ getTransactions, transactions }) => {
   return (
     <div>
       <AttendantHeader />
-      <h2>TRANSACTIONS</h2>
-      {trans}
+      <div className={styles.attendantpage}>
+        <div className={styles.transactions}>
+          <h2>TRANSACTIONS</h2>
+
+          <div className={styles.transactionslist}>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Quantity</th>
+                  <th>Sales</th>
+                </tr>
+              </thead>
+              {trans}
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return { transactions: state.transactions };
 };
 

@@ -1,0 +1,103 @@
+.attendanttransact {
+  margin: 40px 0;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 3rem 3rem;
+  justify-items: center;
+}
+
+.transact {
+  grid-column: 2;
+}
+
+.searchproduct {
+  grid-row: 1 / -1;
+}
+
+.formtransact {
+  max-height: 3rem;
+}
+
+.searchproduct label {
+  font-size: 1rem;
+}
+
+.searchproduct input {
+  font-size: 16px;
+  width: 25rem;
+  height: 2rem;
+  padding: 10px 10px;
+  border: 0.1px solid gray;
+  border-radius: 16px;
+}
+
+.searchresult {
+  font-size: 1rem;
+  line-height: 2rem;
+
+  margin: 5px;
+  background-color: #fff;
+  padding: 20px 20px;
+  border-radius: 14px;
+  cursor: default;
+}
+
+.formtransact input {
+  font-size: 16px;
+  width: 10rem;
+  height: 1.5rem;
+  padding: 10px 10px;
+  border: 0.1px solid gray;
+  border-radius: 6px;
+}
+
+.formtransact button {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #2f9e44;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  padding: 4px 6px;
+  border-radius: 8px;
+  width: 5rem;
+  height: 2rem;
+  margin-left: 20px;
+}
+
+.transact {
+  font-size: 1rem;
+  line-height: 3rem;
+}
+
+.transact button {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f8f9fa;
+  border: none;
+  cursor: pointer;
+
+  padding: 4px 2px;
+  border-radius: 8px;
+  width: 8rem;
+  height: 2rem;
+}
+
+.saleslist {
+  width: 25rem;
+}
+
+.saleslist table {
+  border-collapse: collapse;
+}
+
+.saleslist th,
+.saleslist td {
+  padding: 4px 16px;
+  text-align: left;
+  border-bottom: 0.5px solid #adb5bd;
+  width: 8rem;
+}

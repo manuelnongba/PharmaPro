@@ -1,0 +1,102 @@
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #d4d5d6;
+  /* box-shadow: 0 0 1px rgba(255, 255, 255, 0.5); */
+}
+
+.adminpage {
+  max-width: 1400px;
+  /* margin: 0 auto; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transactions {
+  max-width: auto;
+  padding: 10px 3rem;
+  background-color: #fff;
+}
+
+.transactions h2 {
+  color: #495057;
+  width: 100px;
+  margin: 20px auto;
+}
+
+.transactionslist {
+  width: 26rem;
+  height: 80vh;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: #495057;
+  overflow: auto;
+}
+
+.transactionslist thead {
+  background-color: rgb(160, 189, 219);
+}
+
+.transactionslist table {
+  border-collapse: collapse;
+}
+
+.transactionslist th,
+tr {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 0.5px solid #adb5bd;
+  width: 8rem;
+}
+
+.details {
+  display: flex;
+  gap: 100px;
+  justify-content: center;
+  /* align-items: center; */
+
+  height: 40rem;
+  padding: 4rem 3rem;
+  background-color: #fff;
+  border-radius: 16px;
+}
+
+.sales {
+  background-color: #ff8787;
+  font-size: 24px;
+  color: #343a40;
+  height: 15rem;
+  width: 20rem;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sales h2 {
+  font-size: 20px;
+}
+
+.quantity {
+  background-color: #4dabf7;
+  color: #343a40;
+  font-size: 24px;
+  height: 15rem;
+  width: 20rem;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.quantity h2 {
+  font-size: 20px;
+}

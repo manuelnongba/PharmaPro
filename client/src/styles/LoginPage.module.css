@@ -1,6 +1,10 @@
+.loginpage {
+  position: relative;
+}
+
 .loginpage form {
-  height: 100vh;
   display: flex;
+  margin: 200px auto;
   flex-direction: column;
   gap: 32px;
   justify-content: center;
@@ -11,21 +15,35 @@
   display: inline-block;
   font-size: 16px;
   font-weight: bold;
-  background-color: #1c7ed6;
+  background-color: #12b886;
   border: none;
   cursor: pointer;
   color: #fff;
   padding: 8px 12px;
-  border-radius: 96px;
-  width: 6rem;
-  height: 3rem;
+  border-radius: 10px;
+  width: 5.5rem;
+  height: 2.5rem;
 }
 
 .loginpage input {
-  font-size: 18px;
+  font-size: 16px;
   width: 16rem;
-  height: 3.5rem;
+  height: 3rem;
   padding: 10px 10px;
   border: 0.1px solid gray;
   border-radius: 10px;
+}
+
+.icon {
+  width: 5rem;
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.loginpage input:focus {
+  outline: none;
+  border-bottom: 3px solid #55c57a;
+}
+.loginpage input:focus:invalid {
+  border-bottom: 3px solid #ff7730;
 }
