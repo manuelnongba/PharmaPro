@@ -25,13 +25,25 @@ export const getLoggedInUser = () => async (dispatch) => {
 };
 
 export const addProduct = (formState) => async (dispatch) => {
-  const response = await axios({
-    method: "POST",
-    url: "/api/product",
-    data: formState,
-  });
+  try {
+    const response = await axios({
+      method: "POST",
+      url: "/api/product",
+      data: formState,
+    });
 
-  dispatch({ type: "ADD_PRODUCT", payload: response.data });
+    dispatch({ type: "ADD_PRODUCT", payload: response.data });
+    showAlert("success", "Product successfully added!");
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
+  } catch (err) {
+    if (err.response.data.message.code === 11000)
+      showAlert(
+        "error",
+        `Duplicate field value: ${err.response.data.message.keyValue.name}. Please use another value!`
+      );
+  }
 };
 
 export const getProducts = () => async (dispatch) => {

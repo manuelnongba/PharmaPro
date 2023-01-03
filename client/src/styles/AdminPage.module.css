@@ -55,48 +55,77 @@ tr {
 }
 
 .details {
-  display: flex;
-  gap: 100px;
+  display: grid;
+  grid-template-columns: 20rem 20rem;
   justify-content: center;
-  /* align-items: center; */
+  column-gap: 80px;
+  row-gap: 50px;
 
+  width: 52rem;
   height: 40rem;
-  padding: 4rem 3rem;
+  padding: 3rem 3rem;
   background-color: #fff;
   border-radius: 16px;
 }
 
 .sales {
-  background-color: #ff8787;
+  background-color: #e7f5ff;
   font-size: 24px;
   color: #343a40;
+  border-radius: 16px;
   height: 15rem;
   width: 20rem;
-  border-radius: 16px;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1);
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
 .sales h2 {
   font-size: 20px;
+  margin-top: 80px;
 }
 
 .quantity {
-  background-color: #4dabf7;
+  background-color: #fff5f5;
   color: #343a40;
   font-size: 24px;
+  border-radius: 16px;
   height: 15rem;
   width: 20rem;
-  border-radius: 16px;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1);
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
 .quantity h2 {
   font-size: 20px;
+  margin-top: 80px;
+}
+
+.graph {
+  width: 600px;
+}
+
+.totalsales {
+  background-color: #4dabf7;
+  width: inherit;
+  padding: 16px 4px;
+  text-align: center;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.totalquantity {
+  background-color: #ff8787;
+  width: inherit;
+  padding: 16px 4px;
+  text-align: center;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 16px;
 }

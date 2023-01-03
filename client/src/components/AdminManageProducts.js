@@ -5,7 +5,12 @@ import { addProduct } from "../actions";
 import { getProducts } from "../actions";
 import styles from "../styles/AdminManage.module.css";
 
-const AdminManageProducts = ({ getProducts, products, addProduct }) => {
+const AdminManageProducts = ({
+  getProducts,
+  products,
+  addProduct,
+  newProduct,
+}) => {
   const [formState, setFormState] = useState({
     name: "",
     price: "",
@@ -20,9 +25,17 @@ const AdminManageProducts = ({ getProducts, products, addProduct }) => {
   }, [getProducts]);
 
   useEffect(() => {
-    if (products && products.message === "success") {
-      const items = products.products.map((product) => {
-        return <p key={product._id}>{product.name}</p>;
+    if (products && (products.message = "success")) {
+      console.log(products.products);
+
+      const itemsList = products.products.map((product) => {
+        return product.name;
+      });
+
+      itemsList.sort();
+
+      const items = itemsList.map((product, id) => {
+        return <p key={id}>{product}</p>;
       });
 
       setProductsList(items);
@@ -44,11 +57,10 @@ const AdminManageProducts = ({ getProducts, products, addProduct }) => {
     event.preventDefault();
 
     // Add the drug to the database here...
+
     addProduct(formState);
 
-    alert("Product successfully added!");
-
-    window.location.reload();
+    // if (products && products.message === "success") window.location.reload();
   };
 
   return (
@@ -118,7 +130,7 @@ const AdminManageProducts = ({ getProducts, products, addProduct }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { products: state.products };
+  return { products: state.products, newProduct: state.newProduct };
 };
 
 export default connect(mapStateToProps, { addProduct, getProducts })(

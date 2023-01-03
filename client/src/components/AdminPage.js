@@ -3,6 +3,27 @@ import AdminHeader from "./AdminHeader";
 import { connect } from "react-redux";
 import { getTransactions } from "../actions";
 import styles from "../styles/AdminPage.module.css";
+import {
+  Chart,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+  PointElement,
+  LineElement,
+} from "chart.js";
+import { Bar, Line } from "react-chartjs-2";
+
+Chart.register(
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+  PointElement,
+  LineElement
+);
 
 const AdminPage = ({ transaction, getTransactions }) => {
   const [trans, setTrans] = useState([]);
@@ -37,6 +58,43 @@ const AdminPage = ({ transaction, getTransactions }) => {
     setTotalSales(sSum);
   }, [transaction]);
 
+  let topFiveNames;
+  let topFiveSales;
+
+  if (transaction) {
+    const topSales = transaction.transactions.map((el) => {
+      return el.sales;
+    });
+    topFiveSales = topSales.sort((a, b) => b - a).slice(0, 5);
+
+    const topNames = [];
+
+    transaction.transactions.forEach((trans) => {
+      topFiveSales.forEach((val) => {
+        if (trans.sales === val) {
+          topNames.push(trans.name);
+        }
+      });
+    });
+
+    topFiveNames = topNames.slice(0, 5);
+  }
+
+  const data = {
+    labels: topFiveNames,
+    datasets: [
+      {
+        label: "369",
+        data: topFiveSales,
+        backgroundColor: "#b2f2bb",
+        borderColor: "#adb5bd",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {};
+
   return (
     <div>
       <AdminHeader />
@@ -60,11 +118,14 @@ const AdminPage = ({ transaction, getTransactions }) => {
         <div className={styles.details}>
           <div className={styles.sales}>
             <h2>Total Sales</h2>
-            {totalSales}
+            <div className={styles.totalsales}> {totalSales}</div>
           </div>
           <div className={styles.quantity}>
             <h2>Total Quantity</h2>
-            {totalQuantity}
+            <div className={styles.totalquantity}>{totalQuantity}</div>
+          </div>
+          <div className={styles.graph}>
+            <Bar data={data} options={options} className={styles.linegraph} />
           </div>
         </div>
       </div>
