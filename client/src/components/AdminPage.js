@@ -13,7 +13,7 @@ import {
   PointElement,
   LineElement,
 } from "chart.js";
-import { Bar, Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 Chart.register(
   BarElement,
@@ -59,24 +59,30 @@ const AdminPage = ({ transaction, getTransactions }) => {
   }, [transaction]);
 
   let topFiveNames;
-  let topFiveSales;
+  let topFiveSalesFinal;
 
   if (transaction) {
     const topSales = transaction.transactions.map((el) => {
       return el.sales;
     });
-    topFiveSales = topSales.sort((a, b) => b - a).slice(0, 5);
+    const topFiveSales = topSales.sort((a, b) => b - a).slice(0, 5);
 
     const topNames = [];
+    const topS = [];
 
     transaction.transactions.forEach((trans) => {
       topFiveSales.forEach((val) => {
         if (trans.sales === val) {
-          topNames.push(trans.name);
+          console.log(trans.name);
+          if (!topNames.includes(trans.name)) {
+            topS.push(trans.sales);
+            topNames.push(trans.name);
+          }
         }
       });
     });
 
+    topFiveSalesFinal = topS.slice(0, 5);
     topFiveNames = topNames.slice(0, 5);
   }
 
@@ -85,7 +91,7 @@ const AdminPage = ({ transaction, getTransactions }) => {
     datasets: [
       {
         label: "369",
-        data: topFiveSales,
+        data: topFiveSalesFinal,
         backgroundColor: "#b2f2bb",
         borderColor: "#adb5bd",
         borderWidth: 1,

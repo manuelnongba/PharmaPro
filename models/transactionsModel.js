@@ -7,11 +7,11 @@ const TransactionsSchema = new mongoose.Schema({
   },
   quantity: {
     type: Number,
-    require: [true, "Please provide a dosage"],
+    required: [true, "Please provide a dosage"],
   },
   sales: {
     type: Number,
-    require: [true, "Please provide a price"],
+    required: [true, "Please provide a price"],
   },
 });
 

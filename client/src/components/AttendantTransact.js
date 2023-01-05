@@ -28,7 +28,7 @@ const AttendantTransact = ({
     setSearchTerm(event.target.value);
 
     if (event.target.value) {
-      searchProduct(event.target.value);
+      searchProduct(event.target.value.toLowerCase());
     }
   };
 
