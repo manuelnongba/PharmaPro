@@ -37,7 +37,7 @@ app.use("/", userRouter);
 
 app.use("/", productRouter);
 
-const port = 8000;
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log("App running on port 8000");
 });

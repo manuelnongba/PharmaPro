@@ -46,7 +46,9 @@ const Login = (props) => {
         navigate("/admin/dashboard");
       }, 1000);
     } else if (props.user.user.role === "attendant") {
-      navigate("/attendant/dashboard");
+      setTimeout(() => {
+        navigate("/attendant/dashboard");
+      }, 1000);
     }
   }, [props, navigate]);
 
