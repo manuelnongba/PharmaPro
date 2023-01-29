@@ -15,8 +15,8 @@
   margin: 50px auto;
 
   display: flex;
-  justify-content: center;
-  gap: 30rem;
+  justify-content: space-around;
+  gap: 2rem;
 }
 
 .manage form {
@@ -52,6 +52,7 @@ select {
 }
 
 .products {
+  width: 20rem;
   height: 72vh;
   font-size: 16px;
   color: #495057;

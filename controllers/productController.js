@@ -11,7 +11,7 @@ exports.addProduct = async (req, res, next) => {
       product: newProduct,
     });
   } catch (err) {
-    res.status(401).json({
+    res.status(404).json({
       status: "error",
       message: err,
     });

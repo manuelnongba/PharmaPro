@@ -3,7 +3,7 @@
   font-weight: 600;
 
   display: flex;
-  gap: 50rem;
+  justify-content: space-between;
   align-items: center;
   padding-top: 32px;
   padding-bottom: 12px;
@@ -29,6 +29,7 @@
   border-radius: 12px;
   width: 6rem;
   height: 2.5rem;
+  margin-right: 10rem;
 }
 
 .adminheader a:hover {

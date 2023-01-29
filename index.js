@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
 const express = require("express");
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const userRouter = require("./routes/userRoutes");
 const cookieParser = require("cookie-parser");
@@ -13,10 +13,6 @@ app.use((req, res, next) => {
 });
 
 app.use(cookieParser());
-
-app.use((req, res, next) => {
-  next();
-});
 
 dotenv.config({ path: "./config.env" });
 

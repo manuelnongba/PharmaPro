@@ -11,9 +11,10 @@ body {
 }
 
 .login {
+  margin: 250px auto;
+
   flex-direction: column;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -34,7 +35,6 @@ body {
 .logo {
   stroke: #1c7ed6;
   width: 5rem;
-  margin-bottom: -100px;
 }
 
 .login p {
