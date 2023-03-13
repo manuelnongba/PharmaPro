@@ -1,28 +1,59 @@
-import React, { useEffect, useRef, useState } from "react";
-import { connect } from "react-redux";
-import { getProducts } from "../actions";
-import AttendantHeader from "./AttendantHeader";
-import { searchProduct } from "../actions";
-import { addTransactions } from "../actions";
-import ReactToPrint from "react-to-print";
-import styles from "../styles/AttendantTransact.module.css";
+import React, { useEffect, useRef, useState } from 'react';
+import { connect } from 'react-redux';
+import { getProducts } from '../actions';
+import AttendantHeader from './AttendantHeader';
+import { searchProduct } from '../actions';
+import { addTransactions } from '../actions';
+import { getLoggedInUser } from '../actions';
+import { currentTransaction } from '../actions';
+import { getCurrentTransactions } from '../actions';
+import { deleteTransaction } from '../actions';
+import ReactToPrint from 'react-to-print';
+import styles from '../styles/Transact.module.css';
+import AdminHeader from './AdminHeader';
 
-const AttendantTransact = ({
+const Transact = ({
   getProducts,
   searchProduct,
   products,
   addTransactions,
+  getLoggedInUser,
+  currentUser,
+  currentTransaction,
+  getCurrentTransactions,
+  currentTransactions,
+  deleteTransaction,
 }) => {
   const [formError, setFormError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [result, setResult] = useState("");
-  const [lists, setLists] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
+  const [result, setResult] = useState('');
   const [removeCount, setRemoveCount] = useState(0);
   const [totalSales, setTotalSales] = useState(0);
   const [formState, setFormState] = useState([]);
 
   const quantityRef = useRef();
   const selectedProductNameRef = useRef();
+
+  useEffect(() => {
+    getProducts();
+  }, [getProducts]);
+
+  useEffect(() => {
+    getLoggedInUser();
+  }, [getLoggedInUser]);
+
+  useEffect(() => {
+    getCurrentTransactions();
+  }, [getCurrentTransactions]);
+
+  useEffect(() => {
+    currentTransaction(formState);
+  }, [currentTransaction, formState]);
+
+  let productNames;
+  let price = 0;
+  let displayList;
+  let componentRef;
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -31,10 +62,6 @@ const AttendantTransact = ({
       searchProduct(event.target.value.toLowerCase());
     }
   };
-
-  let productNames;
-
-  let price = 0;
 
   if (products && products.productList) {
     productNames = products.productList.map((prod) => {
@@ -60,16 +87,12 @@ const AttendantTransact = ({
     productNames = null;
   }
 
-  useEffect(() => {
-    getProducts();
-  }, []);
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const form = event.target;
     if (form.checkValidity() === false) {
-      setFormError("All fields are required.");
+      setFormError('All fields are required.');
       return;
     }
 
@@ -82,11 +105,6 @@ const AttendantTransact = ({
 
     setRemoveCount(removeCount + 1);
 
-    setLists(
-      lists +
-        `${removeCount} -- ${result} -- ${quantityRef.current.value}  -- ${totalPrice},`
-    );
-
     setFormState([
       ...formState,
       {
@@ -97,68 +115,61 @@ const AttendantTransact = ({
     ]);
   };
 
-  // const onClick = (id, deductedSale) => {
-  //   const newLists = lists.split(",").filter((el, i) => i !== id);
+  console.log(currentTransactions);
+  if (currentTransactions && currentTransactions.currentTransaction) {
+    displayList = currentTransactions.currentTransaction.map((list, i) => {
+      return (
+        <tbody key={list._id}>
+          <tr>
+            <td>{list.name}</td>
+            <td>{list.quantity}</td>
+            <td>{list.sales}</td>
+            <td>
+              <button
+                onClick={() => {
+                  deleteTransaction(list._id);
 
-  //   const newerLists = newLists.join(",");
+                  formState.splice(i, 1);
+                  setFormState([...formState]);
 
-  //   setLists(newerLists);
-  //   setTotalSales(totalSales - deductedSale);
-  // };
-
-  const displayList = lists.split(",").map((list) => {
-    let id;
-    let name;
-    let quantity;
-    let sales;
-    // let deductedSale;
-    if (list) {
-      id = list.split(" ")[0] * 1;
-      name = list.split(" ")[2];
-      quantity = list.split(" ")[4] * 1;
-      sales = list.split(" ")[7] * 1;
-      console.log(list, id, name, quantity, sales);
-      // deductedSale = list.split(" ")[5];
-    }
-    return (
-      <tbody>
-        <tr>
-          <td>{id}</td>
-          <td>{name}</td>
-          <td>{quantity}</td>
-          <td>{sales}</td>
-        </tr>
-      </tbody>
-    );
-  });
-
-  displayList.pop();
-
-  // console.log(displayList[0].props.children);
-  let componentRef;
+                  setTotalSales(totalSales - list.sales);
+                }}
+              >
+                X
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      );
+    });
+  }
 
   const divRef = useRef(null);
 
   useEffect(() => {
     // Attach an event listener to the document that listens for clicks
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
 
     // Clean up the event listener when the component unmounts
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
   function handleClickOutside(event) {
     // If the user clicks outside the div, hide it
     if (divRef.current && !divRef.current.contains(event.target)) {
-      divRef.current.style.display = "none";
+      divRef.current.style.display = 'none';
     }
   }
 
   return (
     <div>
-      <AttendantHeader />
+      {currentUser && currentUser.user.role === 'admin' ? (
+        <AdminHeader />
+      ) : (
+        <AttendantHeader />
+      )}
       <div className={styles.attendanttransact}>
         <div className={styles.searchproduct}>
           <input
@@ -207,7 +218,6 @@ const AttendantTransact = ({
             <table>
               <thead>
                 <tr>
-                  <th>No</th>
                   <th>Name</th>
                   <th>Quantity</th>
                   <th>Sales</th>
@@ -215,8 +225,8 @@ const AttendantTransact = ({
               </thead>
               {displayList}
             </table>
+            <h2>GH¢{totalSales}</h2>
           </div>
-          <h2>GH¢{totalSales}</h2>
 
           <ReactToPrint
             trigger={() => {
@@ -239,6 +249,8 @@ const mapStateToProps = (state) => {
   return {
     products: state.products,
     transactions: state.transactions,
+    currentTransactions: state.currentTransactions,
+    currentUser: state.user,
   };
 };
 
@@ -246,4 +258,8 @@ export default connect(mapStateToProps, {
   getProducts,
   searchProduct,
   addTransactions,
-})(AttendantTransact);
+  getLoggedInUser,
+  currentTransaction,
+  getCurrentTransactions,
+  deleteTransaction,
+})(Transact);

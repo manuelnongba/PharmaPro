@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getUser } from '../actions';
-import PrivateRoutes from '../utils/PrivateRoutes';
+import PrivateRoutes from '../utils/PrivateRoutesAdmin';
 import PrivateRoutesAttendant from '../utils/PrivateRoutesAttendant';
 import styles from '../styles/LoginPage.module.css';
 

@@ -1,7 +1,7 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import LogoutButton from "./LogoutButton";
-import styles from "../styles/AdminHeader.module.css";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import LogoutButton from './LogoutButton';
+import styles from '../styles/AdminHeader.module.css';
 
 const AdminHeader = () => {
   return (
@@ -9,6 +9,7 @@ const AdminHeader = () => {
       <div>
         <NavLink to="/admin/dashboard">Dashboard</NavLink>
         <NavLink to="/admin/manageproducts">Manage Products</NavLink>
+        <NavLink to="/admin/transact">Transact</NavLink>
       </div>
       <LogoutButton />
     </div>

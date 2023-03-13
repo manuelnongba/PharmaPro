@@ -1,10 +1,13 @@
 /* eslint-disable */
+import _ from 'lodash';
 
 export default (state = null, action) => {
   switch (action.type) {
-    case 'ADD_TRANSACTIONS':
+    case 'CURRENT_TRANSACTION':
       return action.payload;
-    case 'GET_TRANSACTIONS':
+    case 'GET_CURRENT_TRANSACTION':
+      return action.payload;
+    case 'DELETE_TRANSACTION':
       return action.payload;
     default:
       return state;

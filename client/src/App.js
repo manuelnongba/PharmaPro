@@ -1,13 +1,13 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AdminManageProducts from "./components/AdminManageProducts";
-import AdminPage from "./components/AdminPage";
-import AttendantPage from "./components/AttendantPage";
-import AttendantTransact from "./components/AttendantTransact";
-import Login from "./components/LoginPage";
-import LoginButton from "./components/Login";
-import PrivateRoutes from "./utils/PrivateRoutes";
-import PrivateRoutesAttendant from "./utils/PrivateRoutesAttendant";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AdminManageProducts from './components/AdminManageProducts';
+import AdminPage from './components/AdminPage';
+import AttendantPage from './components/AttendantPage';
+import Transact from './components/Transact';
+import Login from './components/LoginPage';
+import LoginButton from './components/Login';
+import PrivateRoutesAdmin from './utils/PrivateRoutesAdmin';
+import PrivateRoutesAttendant from './utils/PrivateRoutesAttendant';
 
 const App = () => {
   return (
@@ -15,13 +15,14 @@ const App = () => {
       <BrowserRouter>
         <div>
           <Routes>
-            <Route element={<PrivateRoutes />}>
+            <Route element={<PrivateRoutesAdmin />}>
               <Route element={<AdminPage />} path="/admin/dashboard" exact />
               <Route
                 path="/admin/manageproducts"
                 exact
                 element={<AdminManageProducts />}
               />
+              <Route path="/admin/transact" exact element={<Transact />} />
             </Route>
             <Route element={<PrivateRoutesAttendant />}>
               <Route
@@ -29,11 +30,7 @@ const App = () => {
                 path="/attendant/dashboard"
                 exact
               />
-              <Route
-                element={<AttendantTransact />}
-                path="/attendant/transact"
-                exact
-              />
+              <Route element={<Transact />} path="/attendant/transact" exact />
             </Route>
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/" element={<LoginButton />} />
