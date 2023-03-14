@@ -1,18 +1,18 @@
-const Product = require("../models/productModel");
-const Transactions = require("../models/transactionsModel");
+const CurrentTransactions = require('../models/currentTransactionsModel');
+const Product = require('../models/productModel');
+const Transactions = require('../models/transactionsModel');
 
 exports.addProduct = async (req, res, next) => {
   try {
     const newProduct = await Product.create(req.body);
 
     res.status(200).json({
-      message: "success",
-
+      message: 'success',
       product: newProduct,
     });
   } catch (err) {
     res.status(404).json({
-      status: "error",
+      status: 'error',
       message: err,
     });
   }
@@ -22,7 +22,7 @@ exports.addTransactions = async (req, res, next) => {
   const transaction = await Transactions.create(req.body);
 
   res.status(200).json({
-    message: "success",
+    message: 'success',
     transaction,
   });
 };
@@ -31,8 +31,44 @@ exports.getTransactions = async (req, res, next) => {
   const transactions = await Transactions.find();
 
   res.status(200).json({
-    message: "success",
+    message: 'success',
     transactions,
+  });
+};
+
+exports.currentTransaction = async (req, res, next) => {
+  const currentTransaction = await CurrentTransactions.create(req.body);
+
+  res.status(200).json({
+    message: 'success',
+    currentTransaction,
+  });
+};
+
+exports.getCurrentTransactions = async (req, res, next) => {
+  const currentTransactions = await CurrentTransactions.find();
+
+  res.status(200).json({
+    message: 'success',
+    currentTransactions,
+  });
+};
+
+exports.deleteCurrentTransaction = async (req, res, next) => {
+  const result = await CurrentTransactions.deleteOne({ _id: req.params.id });
+
+  res.status(204).json({
+    status: 'success',
+    data: result,
+  });
+};
+
+exports.deleteAllCurrentTransactions = async (req, res, next) => {
+  const result = await CurrentTransactions.deleteMany({});
+
+  res.status(204).json({
+    status: 'success',
+    data: result,
   });
 };
 
@@ -40,7 +76,7 @@ exports.getProducts = async (req, res, next) => {
   const products = await Product.find();
 
   res.status(200).json({
-    message: "success",
+    message: 'success',
     products,
   });
 };
@@ -50,10 +86,10 @@ exports.search = async (req, res, next) => {
 
   const productList = await Product.find({ name: new RegExp(`^${name}`) });
 
-  if (!productList) throw new Error("Not found");
+  if (!productList) throw new Error('Not found');
 
   res.status(200).json({
-    message: "success",
+    message: 'success',
     productList,
   });
 };

@@ -1,6 +1,6 @@
-const User = require("../models/userModel");
-const jwt = require("jsonwebtoken");
-const { promisify } = require("util");
+const User = require('../models/userModel');
+const jwt = require('jsonwebtoken');
+const { promisify } = require('util');
 
 const signToken = (id, role) =>
   jwt.sign({ id, role }, process.env.JWT_SECRET, {
@@ -16,13 +16,13 @@ exports.login = async (req, res, next) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
-      throw new Error("Please provide email and password", 400);
+      throw new Error('Please provide email and password', 400);
     }
 
     const user = await User.findOne({ username });
 
     if (!user || !user.correctPassword(password)) {
-      throw new Error("Incorrect username or password");
+      throw new Error('Incorrect username or password');
     }
 
     const token = signToken(user._id, user.role);
@@ -35,30 +35,30 @@ exports.login = async (req, res, next) => {
       httpOnly: true,
     };
 
-    res.cookie("jwt", token, cookieOptions);
+    res.cookie('jwt', token, cookieOptions);
 
     const { _id, role } = user;
 
     res.status(200).json({
-      status: "success",
+      status: 'success',
       token,
       user: { _id, role },
     });
   } catch (err) {
     res.status(401).json({
-      status: "fail",
+      status: 'fail',
       message: err.message,
     });
   }
 };
 
 exports.logout = (req, res) => {
-  res.cookie("jwt", "loggedout", {
+  res.cookie('jwt', 'loggedout', {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
   });
 
-  res.status(200).json({ status: "success" });
+  res.status(200).json({ status: 'success' });
 };
 
 exports.isLoggedIn = async (req, res, next) => {

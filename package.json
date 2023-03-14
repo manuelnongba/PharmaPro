@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "dev": "node index.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run start\" \"npm run client\""
+    "start": "concurrently \"npm run dev\" \"npm run client\""
   },
   "author": "Emmanuel Anongba",
   "license": "ISC",

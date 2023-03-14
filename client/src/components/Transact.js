@@ -11,6 +11,7 @@ import { deleteTransaction } from '../actions';
 import ReactToPrint from 'react-to-print';
 import styles from '../styles/Transact.module.css';
 import AdminHeader from './AdminHeader';
+import axios from 'axios';
 
 const Transact = ({
   getProducts,
@@ -115,7 +116,6 @@ const Transact = ({
     ]);
   };
 
-  console.log(currentTransactions);
   if (currentTransactions && currentTransactions.currentTransaction) {
     displayList = currentTransactions.currentTransaction.map((list, i) => {
       return (
@@ -130,6 +130,7 @@ const Transact = ({
                   deleteTransaction(list._id);
 
                   formState.splice(i, 1);
+
                   setFormState([...formState]);
 
                   setTotalSales(totalSales - list.sales);
@@ -232,8 +233,9 @@ const Transact = ({
             trigger={() => {
               return <button>Print</button>;
             }}
-            onAfterPrint={() => {
+            onAfterPrint={async () => {
               addTransactions(formState);
+              await axios.delete('/api/delete-all-current-transactions');
             }}
             content={() => componentRef}
             documentTitle="Sales Receipt"
