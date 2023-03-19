@@ -9,6 +9,7 @@ const {
   getCurrentTransactions,
   deleteCurrentTransaction,
   deleteAllCurrentTransactions,
+  updateStock,
 } = require('../controllers/productController');
 
 const router = express.Router();
@@ -18,6 +19,8 @@ router.get('/api/products', getProducts);
 router.post('/api/product', addProduct);
 
 router.get('/api/searchproduct/:name', search);
+
+router.patch('/api/updatestock/:name', updateStock);
 
 router.post('/api/transactions', addTransactions);
 

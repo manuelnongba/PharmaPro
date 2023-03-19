@@ -8,6 +8,7 @@ import Login from './components/LoginPage';
 import LoginButton from './components/Login';
 import PrivateRoutesAdmin from './utils/PrivateRoutesAdmin';
 import PrivateRoutesAttendant from './utils/PrivateRoutesAttendant';
+import Stock from './components/Stock';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
                 element={<AdminManageProducts />}
               />
               <Route path="/admin/transact" exact element={<Transact />} />
+              <Route path="/admin/stock" exact element={<Stock />} />
             </Route>
             <Route element={<PrivateRoutesAttendant />}>
               <Route
@@ -31,6 +33,7 @@ const App = () => {
                 exact
               />
               <Route element={<Transact />} path="/attendant/transact" exact />
+              <Route path="/admin/stock" exact element={<Stock />} />
             </Route>
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/" element={<LoginButton />} />

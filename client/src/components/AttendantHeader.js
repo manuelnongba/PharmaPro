@@ -1,7 +1,7 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import LogoutButton from "./LogoutButton";
-import styles from "../styles/AttendantHeader.module.css";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import LogoutButton from './LogoutButton';
+import styles from '../styles/AttendantHeader.module.css';
 
 const AttendantHeader = () => {
   return (

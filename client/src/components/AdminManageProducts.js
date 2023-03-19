@@ -1,9 +1,9 @@
-import { connect } from "react-redux";
-import React, { useEffect, useState } from "react";
-import AdminHeader from "./AdminHeader";
-import { addProduct } from "../actions";
-import { getProducts } from "../actions";
-import styles from "../styles/AdminManage.module.css";
+import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import AdminHeader from './AdminHeader';
+import { addProduct } from '../actions';
+import { getProducts } from '../actions';
+import styles from '../styles/AdminManage.module.css';
 
 const AdminManageProducts = ({
   getProducts,
@@ -12,12 +12,14 @@ const AdminManageProducts = ({
   newProduct,
 }) => {
   const [formState, setFormState] = useState({
-    name: "",
-    price: "",
-    dosage: "",
-    unit: "mg",
-    frequency: "",
+    name: '',
+    price: '',
+    dosage: '',
+    unit: 'mg',
+    frequency: '',
+    stockcount: '',
   });
+
   const [productsList, setProductsList] = useState();
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const AdminManageProducts = ({
   }, [getProducts]);
 
   useEffect(() => {
-    if (products && (products.message = "success")) {
+    if (products && (products.message = 'success')) {
       console.log(products.products);
 
       const itemsList = products.products.map((product) => {
@@ -114,6 +116,15 @@ const AdminManageProducts = ({
             id="frequency"
             name="frequency"
             value={formState.frequency}
+            onChange={handleChange}
+          />
+
+          <label htmlFor="stock">Stock Count:</label>
+          <input
+            type="number"
+            id="stockcount"
+            name="stockcount"
+            value={formState.stockcount}
             onChange={handleChange}
           />
 

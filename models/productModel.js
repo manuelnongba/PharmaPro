@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const ProductSchema = new mongoose.Schema({
   name: {
@@ -9,23 +9,27 @@ const ProductSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: [true, "Please provide a price"],
+    required: [true, 'Please provide a price'],
   },
   dosage: {
     type: Number,
-    required: [true, "Please provide a dosage"],
+    required: [true, 'Please provide a dosage'],
   },
   frequency: {
     type: String,
   },
   unit: {
     type: String,
-    enum: ["mg", "g", "ml", "l"],
-    default: "mg",
-    required: [true, "Please provide a unit"],
+    enum: ['mg', 'g', 'ml', 'l'],
+    default: 'mg',
+    required: [true, 'Please provide a unit'],
+  },
+  stockcount: {
+    type: Number,
+    required: [true, 'Please provide the stock count for this product'],
   },
 });
 
-const Product = mongoose.model("Product", ProductSchema);
+const Product = mongoose.model('Product', ProductSchema);
 
 module.exports = Product;

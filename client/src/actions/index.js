@@ -95,3 +95,9 @@ export const deleteTransaction = (term) => async (dispatch) => {
 
   dispatch({ type: 'DELETE_TRANSACTION', payload: term });
 };
+
+export const updateStock = (term) => async (dispatch) => {
+  await axios.delete(`/api/updatestock/${term}`);
+
+  dispatch({ type: 'UPDATE_STOCK', payload: term });
+};

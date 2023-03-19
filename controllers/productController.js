@@ -18,6 +18,37 @@ exports.addProduct = async (req, res, next) => {
   }
 };
 
+exports.getProducts = async (req, res, next) => {
+  const products = await Product.find();
+
+  res.status(200).json({
+    message: 'success',
+    products,
+  });
+};
+
+exports.updateStock = async (req, res) => {
+  const product = await Product.updateOne({});
+
+  res.status(200).json({
+    message: 'success',
+    products: product,
+  });
+};
+
+exports.search = async (req, res, next) => {
+  const { name } = req.params;
+
+  const productList = await Product.find({ name: new RegExp(`^${name}`) });
+
+  if (!productList) throw new Error('Not found');
+
+  res.status(200).json({
+    message: 'success',
+    productList,
+  });
+};
+
 exports.addTransactions = async (req, res, next) => {
   const transaction = await Transactions.create(req.body);
 
@@ -69,27 +100,5 @@ exports.deleteAllCurrentTransactions = async (req, res, next) => {
   res.status(204).json({
     status: 'success',
     data: result,
-  });
-};
-
-exports.getProducts = async (req, res, next) => {
-  const products = await Product.find();
-
-  res.status(200).json({
-    message: 'success',
-    products,
-  });
-};
-
-exports.search = async (req, res, next) => {
-  const { name } = req.params;
-
-  const productList = await Product.find({ name: new RegExp(`^${name}`) });
-
-  if (!productList) throw new Error('Not found');
-
-  res.status(200).json({
-    message: 'success',
-    productList,
   });
 };

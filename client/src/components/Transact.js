@@ -8,6 +8,7 @@ import { getLoggedInUser } from '../actions';
 import { currentTransaction } from '../actions';
 import { getCurrentTransactions } from '../actions';
 import { deleteTransaction } from '../actions';
+import { updateStock } from '../actions';
 import ReactToPrint from 'react-to-print';
 import styles from '../styles/Transact.module.css';
 import AdminHeader from './AdminHeader';
@@ -17,6 +18,7 @@ const Transact = ({
   getProducts,
   searchProduct,
   products,
+  updateStock,
   addTransactions,
   getLoggedInUser,
   currentUser,
@@ -28,7 +30,7 @@ const Transact = ({
   const [formError, setFormError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [result, setResult] = useState('');
-  const [removeCount, setRemoveCount] = useState(0);
+  // const [removeCount, setRemoveCount] = useState(0);
   const [totalSales, setTotalSales] = useState(0);
   const [formState, setFormState] = useState([]);
 
@@ -104,7 +106,7 @@ const Transact = ({
 
     setTotalSales(totalSales + totalPrice);
 
-    setRemoveCount(removeCount + 1);
+    // setRemoveCount(removeCount + 1);
 
     setFormState([
       ...formState,
@@ -235,6 +237,11 @@ const Transact = ({
             }}
             onAfterPrint={async () => {
               addTransactions(formState);
+              console.log(formState);
+
+              formState.forEach((product) => {
+                updateStock();
+              });
               await axios.delete('/api/delete-all-current-transactions');
             }}
             content={() => componentRef}
@@ -259,6 +266,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   getProducts,
   searchProduct,
+  updateStock,
   addTransactions,
   getLoggedInUser,
   currentTransaction,
