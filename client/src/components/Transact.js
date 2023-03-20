@@ -13,6 +13,7 @@ import ReactToPrint from 'react-to-print';
 import styles from '../styles/Transact.module.css';
 import AdminHeader from './AdminHeader';
 import axios from 'axios';
+import { showAlert } from '../utils/alert';
 
 const Transact = ({
   getProducts,
@@ -107,12 +108,19 @@ const Transact = ({
     setTotalSales(totalSales + totalPrice);
 
     // setRemoveCount(removeCount + 1);
+    if (products && products.productList) {
+      products.productList.forEach((prod) => {
+        console.log(prod);
+        if (prod.name === result && prod.stockcount <= 0)
+          showAlert('error', `${result} out of stock`);
+      });
+    }
 
     setFormState([
       ...formState,
       {
         name: result,
-        quantity: quantityRef.current.value,
+        quantity: Number(quantityRef.current.value),
         sales: totalPrice,
       },
     ]);
@@ -240,7 +248,8 @@ const Transact = ({
               console.log(formState);
 
               formState.forEach((product) => {
-                updateStock();
+                console.log(product);
+                updateStock(product.name, product.quantity);
               });
               await axios.delete('/api/delete-all-current-transactions');
             }}

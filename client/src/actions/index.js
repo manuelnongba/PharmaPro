@@ -21,7 +21,9 @@ export const getLoggedInUser = () => async (dispatch) => {
     const response = await axios.get('/api/user');
 
     dispatch({ type: 'CURRENT_USER', payload: response.data });
-  } catch (err) {}
+  } catch (err) {
+    // showAlert('error', 'User not found');
+  }
 };
 
 export const addProduct = (formState) => async (dispatch) => {
@@ -96,8 +98,8 @@ export const deleteTransaction = (term) => async (dispatch) => {
   dispatch({ type: 'DELETE_TRANSACTION', payload: term });
 };
 
-export const updateStock = (term) => async (dispatch) => {
-  await axios.delete(`/api/updatestock/${term}`);
+export const updateStock = (name, quantity) => async (dispatch) => {
+  await axios.patch(`/api/updatestock/${name}/${quantity}`);
 
-  dispatch({ type: 'UPDATE_STOCK', payload: term });
+  dispatch({ type: 'UPDATE_STOCK', payload: name });
 };

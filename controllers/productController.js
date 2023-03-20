@@ -28,11 +28,29 @@ exports.getProducts = async (req, res, next) => {
 };
 
 exports.updateStock = async (req, res) => {
-  const product = await Product.updateOne({});
+  const product = await Product.updateOne(
+    { name: req.params.name, stockCount: { $gt: 0 } },
+    {
+      $inc: {
+        stockcount: -req.params.quantity,
+      },
+    }
+  );
 
   res.status(200).json({
     message: 'success',
     products: product,
+  });
+};
+
+exports.expiredProducts = async (req, res) => {
+  const expiredProducts = await Product.find({
+    expiryDate: { $lte: new Date() },
+  });
+
+  res.status(200).json({
+    message: 'success',
+    expiredProducts,
   });
 };
 

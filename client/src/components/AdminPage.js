@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import AdminHeader from "./AdminHeader";
-import { connect } from "react-redux";
-import { getTransactions } from "../actions";
-import styles from "../styles/AdminPage.module.css";
+import React, { useEffect, useState } from 'react';
+import AdminHeader from './AdminHeader';
+import { connect } from 'react-redux';
+import { getTransactions } from '../actions';
+import styles from '../styles/AdminPage.module.css';
 import {
   Chart,
   BarElement,
@@ -12,8 +12,9 @@ import {
   Legend,
   PointElement,
   LineElement,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import ExpiredProducts from './ExpiredProducts';
 
 Chart.register(
   BarElement,
@@ -32,12 +33,12 @@ const AdminPage = ({ transaction, getTransactions }) => {
 
   useEffect(() => {
     getTransactions();
-  }, []);
+  }, [getTransactions]);
 
   useEffect(() => {
     let qSum = 0;
     let sSum = 0;
-    if (transaction) {
+    if (transaction && transaction.transactions) {
       setTrans(
         transaction.transactions.map((trans) => {
           qSum += trans.quantity;
@@ -61,7 +62,7 @@ const AdminPage = ({ transaction, getTransactions }) => {
   let topFiveNames;
   let topFiveSalesFinal;
 
-  if (transaction) {
+  if (transaction && transaction.transactions) {
     const topSales = transaction.transactions.map((el) => {
       return el.sales;
     });
@@ -73,7 +74,7 @@ const AdminPage = ({ transaction, getTransactions }) => {
     transaction.transactions.forEach((trans) => {
       topFiveSales.forEach((val) => {
         if (trans.sales === val) {
-          console.log(trans.name);
+          // console.log(trans.name);
           if (!topNames.includes(trans.name)) {
             topS.push(trans.sales);
             topNames.push(trans.name);
@@ -90,10 +91,10 @@ const AdminPage = ({ transaction, getTransactions }) => {
     labels: topFiveNames,
     datasets: [
       {
-        label: "369",
+        label: '369',
         data: topFiveSalesFinal,
-        backgroundColor: "#b2f2bb",
-        borderColor: "#adb5bd",
+        backgroundColor: '#b2f2bb',
+        borderColor: '#adb5bd',
         borderWidth: 1,
       },
     ],
@@ -132,6 +133,9 @@ const AdminPage = ({ transaction, getTransactions }) => {
           </div>
           <div className={styles.graph}>
             <Bar data={data} options={options} className={styles.linegraph} />
+          </div>
+          <div>
+            <ExpiredProducts />
           </div>
         </div>
       </div>

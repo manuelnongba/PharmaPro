@@ -10,13 +10,13 @@ class Stock extends React.Component {
   };
 
   stockTable = () => {
-    if (this.props.products)
+    if (this.props.products && this.props.products.products)
       return this.props.products.products.map((product) => {
         return (
           <tbody key={product._id}>
             <tr>
               <td>{product.name}</td>
-              <td>{product.stockcount}</td>
+              <td>{product.stockCount}</td>
             </tr>
           </tbody>
         );

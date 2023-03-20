@@ -24,9 +24,13 @@ const ProductSchema = new mongoose.Schema({
     default: 'mg',
     required: [true, 'Please provide a unit'],
   },
-  stockcount: {
+  stockCount: {
     type: Number,
     required: [true, 'Please provide the stock count for this product'],
+  },
+  expiryDate: {
+    type: Date,
+    required: [true, 'Please provide an expiry date'],
   },
 });
 

@@ -17,7 +17,8 @@ const AdminManageProducts = ({
     dosage: '',
     unit: 'mg',
     frequency: '',
-    stockcount: '',
+    stockCount: '',
+    expiryDate: '',
   });
 
   const [productsList, setProductsList] = useState();
@@ -27,7 +28,7 @@ const AdminManageProducts = ({
   }, [getProducts]);
 
   useEffect(() => {
-    if (products && (products.message = 'success')) {
+    if (products && products.message === 'success') {
       console.log(products.products);
 
       const itemsList = products.products.map((product) => {
@@ -53,6 +54,8 @@ const AdminManageProducts = ({
       [name]: value,
     });
   };
+
+  console.log(formState);
 
   // Function to handle submission of the form
   const handleSubmit = (event) => {
@@ -123,8 +126,17 @@ const AdminManageProducts = ({
           <input
             type="number"
             id="stockcount"
-            name="stockcount"
-            value={formState.stockcount}
+            name="stockCount"
+            value={formState.stockCount}
+            onChange={handleChange}
+          />
+
+          <label htmlFor="expiryDate">Stock Count:</label>
+          <input
+            type="Date"
+            id="expiryDate"
+            name="expiryDate"
+            value={formState.expiryDate}
             onChange={handleChange}
           />
 
