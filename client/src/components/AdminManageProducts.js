@@ -28,9 +28,8 @@ const AdminManageProducts = ({
   }, [getProducts]);
 
   useEffect(() => {
-    if (products && products.message === 'success') {
-      console.log(products.products);
-
+    if (products && products.products) {
+      console.log(products);
       const itemsList = products.products.map((product) => {
         return product.name;
       });

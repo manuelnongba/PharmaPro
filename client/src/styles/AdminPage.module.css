@@ -6,12 +6,10 @@
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
   background-color: #d4d5d6;
-  /* box-shadow: 0 0 1px rgba(255, 255, 255, 0.5); */
 }
 
 .adminpage {
   max-width: 1400px;
-  /* margin: 0 auto; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,7 +45,7 @@
 }
 
 .transactionslist th,
-tr {
+.transactionslist td {
   padding: 14px 16px;
   text-align: left;
   border-bottom: 0.5px solid #adb5bd;
@@ -57,15 +55,17 @@ tr {
 .details {
   display: grid;
   grid-template-columns: 20rem 20rem;
+  grid-template-rows: 1fr 1fr 1fr;
   justify-content: center;
   column-gap: 80px;
-  row-gap: 50px;
+  row-gap: 35px;
 
   width: 52rem;
-  height: 40rem;
-  padding: 3rem 3rem;
+  height: 42rem;
+  padding: 1rem 1rem;
   background-color: #fff;
   border-radius: 16px;
+  overflow: auto;
 }
 
 .sales {
@@ -128,4 +128,23 @@ tr {
   text-align: center;
   border-bottom-right-radius: 16px;
   border-bottom-left-radius: 16px;
+}
+
+.expiredproducts th,
+.expiredproducts td {
+  border: 1px solid grey;
+  padding: 1rem 1rem;
+}
+
+.expiredproducts {
+  font-size: 20px;
+  grid-column: 1/3;
+}
+
+.expiredproducts table {
+  border-collapse: collapse;
+}
+
+.expiredproducts h1 {
+  color: red;
 }

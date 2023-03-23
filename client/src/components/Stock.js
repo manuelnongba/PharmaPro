@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AdminHeader from './AdminHeader';
 import { getProducts } from '../actions';
-import styles from '../styles/AdminManage.module.css';
+import styles from '../styles/Stock.module.css';
 
 class Stock extends React.Component {
   componentDidMount = () => {
@@ -11,10 +11,12 @@ class Stock extends React.Component {
 
   stockTable = () => {
     if (this.props.products && this.props.products.products)
-      return this.props.products.products.map((product) => {
+      return this.props.products.products.map((product, i) => {
         return (
           <tbody key={product._id}>
-            <tr>
+            <tr
+              className={i % 2 === 0 ? `${styles.evenrow}` : `${styles.oddrow}`}
+            >
               <td>{product.name}</td>
               <td>{product.stockCount}</td>
             </tr>
@@ -27,19 +29,17 @@ class Stock extends React.Component {
     return (
       <div>
         <AdminHeader />
-        <div>
+        <div className={styles.stocktable}>
           <h2>PHARMA PRO STOCK</h2>
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Stock</th>
-                </tr>
-              </thead>
-              {this.stockTable()}
-            </table>
-          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Stock</th>
+              </tr>
+            </thead>
+            {this.stockTable()}
+          </table>
         </div>
       </div>
     );

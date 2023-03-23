@@ -32,7 +32,7 @@ exports.updateStock = async (req, res) => {
     { name: req.params.name, stockCount: { $gt: 0 } },
     {
       $inc: {
-        stockcount: -req.params.quantity,
+        stockCount: -req.params.quantity,
       },
     }
   );

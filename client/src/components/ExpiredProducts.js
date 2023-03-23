@@ -13,12 +13,15 @@ class ExpiredProducts extends React.Component {
   }
   expiredProducts = () => {
     return this.state.expiredProducts.map((product) => {
-      console.log(product);
+      const date = new Date(product.expiryDate);
+      const formattedDate = date.toLocaleDateString('en-GH');
+
+      console.log(formattedDate);
       return (
         <tbody key={product._id}>
           <tr>
             <td>{product.name}</td>
-            <td>{product.expiryDate}</td>
+            <td>{formattedDate}</td>
           </tr>
         </tbody>
       );
@@ -28,10 +31,11 @@ class ExpiredProducts extends React.Component {
   render() {
     return (
       <div>
+        <h1>Expired Products</h1>
         <table>
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Product Name</th>
               <th>Expiry Date</th>
             </tr>
           </thead>

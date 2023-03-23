@@ -134,7 +134,7 @@ const AdminPage = ({ transaction, getTransactions }) => {
           <div className={styles.graph}>
             <Bar data={data} options={options} className={styles.linegraph} />
           </div>
-          <div>
+          <div className={styles.expiredproducts}>
             <ExpiredProducts />
           </div>
         </div>
