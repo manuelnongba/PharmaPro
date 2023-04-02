@@ -5,12 +5,7 @@ import { addProduct } from '../actions';
 import { getProducts } from '../actions';
 import styles from '../styles/AdminManage.module.css';
 
-const AdminManageProducts = ({
-  getProducts,
-  products,
-  addProduct,
-  newProduct,
-}) => {
+const AdminManageProducts = ({ getProducts, products, addProduct }) => {
   const [formState, setFormState] = useState({
     name: '',
     price: '',

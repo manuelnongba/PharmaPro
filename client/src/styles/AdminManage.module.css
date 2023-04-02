@@ -79,3 +79,15 @@ select {
 .productslist {
   overflow: scroll;
 }
+
+@media (max-width: 70em) {
+  .manage {
+    max-width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 2rem;
+  }
+}

@@ -1,6 +1,21 @@
 import axios from 'axios';
 import { showAlert } from '../utils/alert';
 
+export const createUser = (formData) => async (dispatch) => {
+  try {
+    const response = await axios({
+      method: 'POST',
+      url: '/api/newuser',
+      data: formData,
+    });
+
+    dispatch({ type: 'CREATE_USER', payload: response.data });
+    showAlert('success', 'User Created Successfully!');
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
+};
+
 export const getUser = (formData) => async (dispatch) => {
   try {
     const response = await axios({

@@ -1,14 +1,21 @@
-const express = require("express");
-const { login, isLoggedIn, logout } = require("../controllers/authentication");
+const express = require('express');
+const {
+  login,
+  isLoggedIn,
+  logout,
+} = require('../controllers/authenticationController');
+const { createUser } = require('../controllers/userController');
 
 const router = express.Router();
 
 // router.route("/").get(home);
 
-router.route("/api/user").get(isLoggedIn);
+router.post('/api/newUser', createUser);
 
-router.route("/api/login").post(login);
+router.route('/api/user').get(isLoggedIn);
 
-router.get("/api/logout", logout);
+router.route('/api/login').post(login);
+
+router.get('/api/logout', logout);
 
 module.exports = router;

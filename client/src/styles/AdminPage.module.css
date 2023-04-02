@@ -148,3 +148,72 @@
 .expiredproducts h1 {
   color: red;
 }
+
+@media (max-width: 70em) {
+  .adminpage {
+    max-width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 26em) {
+  .transactionslist {
+    width: 20rem;
+    height: 60vh;
+  }
+
+  .details {
+    display: grid;
+    grid-template-columns: 10rem 10rem;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-content: center;
+    column-gap: 60px;
+    row-gap: 15px;
+
+    width: 37rem;
+    height: 27rem;
+    padding: 1rem 1rem;
+    background-color: #fff;
+    border-radius: 16px;
+    overflow: auto;
+  }
+
+  .sales {
+    background-color: #e7f5ff;
+    font-size: 14px;
+    color: #343a40;
+    border-radius: 16px;
+    height: 10rem;
+    width: 13rem;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .quantity {
+    background-color: #fff5f5;
+    color: #343a40;
+    font-size: 14px;
+    border-radius: 16px;
+    height: 10rem;
+    width: 13rem;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .graph {
+    width: 500px;
+  }
+}

@@ -17,6 +17,11 @@
 
 .formtransact {
   max-height: 3rem;
+  font-size: 1rem;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .searchproduct label {
@@ -42,6 +47,11 @@
   border-radius: 14px;
   cursor: default;
 }
+
+/* .formtransact label {
+  font-size: 1rem;
+  margin-right: 1rem;
+} */
 
 .formtransact input {
   font-size: 16px;
@@ -100,4 +110,30 @@
   text-align: left;
   border-bottom: 0.5px solid #adb5bd;
   width: 8rem;
+}
+
+.saleslist h2 {
+  text-align: left;
+  margin-left: 1rem;
+}
+
+@media (max-width: 70em) {
+  .attendanttransact {
+    margin: 40px 0;
+
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+
+    gap: 2rem;
+  }
+
+  .formtransact {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+
+    margin-bottom: 2rem;
+  }
 }
