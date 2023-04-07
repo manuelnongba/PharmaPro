@@ -51,6 +51,47 @@ select {
   margin-top: 1rem;
 }
 
+.manageuser {
+  font-size: 14px;
+
+  margin: 50px auto;
+
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+.manageuser form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.manageuser input {
+  margin-top: 1rem;
+  font-size: 14px;
+  width: 20rem;
+  height: 2.5rem;
+  padding: 0px 10px;
+  border: 0.1px solid gray;
+  border-radius: 10px;
+}
+
+.manageuser button {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #12b886;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  width: 6rem;
+  height: 2.5rem;
+  align-self: flex-end;
+}
+
 .products {
   width: 20rem;
   height: 72vh;

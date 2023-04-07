@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: [true, 'Please provide your username'],
+    unique: true,
   },
   photo: String,
   role: {

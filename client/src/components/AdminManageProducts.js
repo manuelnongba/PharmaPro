@@ -125,7 +125,7 @@ const AdminManageProducts = ({ getProducts, products, addProduct }) => {
             onChange={handleChange}
           />
 
-          <label htmlFor="expiryDate">Stock Count:</label>
+          <label htmlFor="expiryDate">Expiry Date:</label>
           <input
             type="Date"
             id="expiryDate"

@@ -21,7 +21,7 @@ exports.login = async (req, res, next) => {
 
     const user = await User.findOne({ username });
 
-    if (!user || !user.correctPassword(password, user.password)) {
+    if (!user || !(await user.correctPassword(password, user.password))) {
       throw new Error('Incorrect username or password');
     }
 

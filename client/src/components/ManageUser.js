@@ -10,7 +10,7 @@ class ManageUsers extends React.Component {
       name: '',
       email: '',
       username: '',
-      role: '',
+      role: 'attendant',
       password: '',
     },
   };
@@ -26,8 +26,18 @@ class ManageUsers extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log(this.state.formData);
     this.props.createUser(this.state.formData);
+
+    this.setState({
+      formData: {
+        name: '',
+        email: '',
+        username: '',
+        role: 'attendant',
+        password: '',
+      },
+    });
   };
 
   render() {
@@ -35,7 +45,7 @@ class ManageUsers extends React.Component {
       <div>
         <AdminHeader />
 
-        <div className={styles.manage}>
+        <div className={styles.manageuser}>
           <form onSubmit={this.handleSubmit}>
             <input
               type="text"
@@ -58,13 +68,15 @@ class ManageUsers extends React.Component {
               onChange={this.handleInputChange}
               placeholder="username"
             />
-            <input
+            <select
               type="text"
               name="role"
               value={this.state.formData.role}
               onChange={this.handleInputChange}
-              placeholder="role"
-            />
+            >
+              <option value="attendant">attendant</option>
+              <option value="admin">admin</option>
+            </select>
             <input
               type="password"
               name="password"
