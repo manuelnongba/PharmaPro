@@ -6,7 +6,7 @@ import PrivateRoutes from '../utils/PrivateRoutesAdmin';
 import PrivateRoutesAttendant from '../utils/PrivateRoutesAttendant';
 import styles from '../styles/LoginPage.module.css';
 
-const Login = (getUser, user) => {
+const Login = ({ getUser, user }) => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
