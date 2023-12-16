@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './LogoutButton';
+import Logout from './Logout';
 import styles from '../styles/AdminHeader.module.css';
 
 const AdminHeader = () => {
@@ -50,7 +50,7 @@ const AdminHeader = () => {
         <NavLink to="/admin/stock">Stock</NavLink>
         <NavLink to="/admin/manageusers">Manage Users</NavLink>
       </div>
-      <LogoutButton />
+      <Logout />
     </div>
   );
 };

@@ -31,10 +31,8 @@ const Transact = ({
   const [formError, setFormError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [result, setResult] = useState('');
-  // const [removeCount, setRemoveCount] = useState(0);
   const [totalSales, setTotalSales] = useState(0);
   const [formState, setFormState] = useState([]);
-
   const quantityRef = useRef();
   const selectedProductNameRef = useRef();
 

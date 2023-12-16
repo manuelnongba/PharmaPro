@@ -1,15 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AdminManageProducts from './AdminManageProducts';
-import AdminPage from './AdminPage';
-import AttendantPage from './AttendantPage';
-import Transact from './Transact';
-import Login from './LoginPage';
-import LoginButton from './Login';
-import PrivateRoutesAdmin from '../utils/PrivateRoutesAdmin';
-import PrivateRoutesAttendant from '../utils/PrivateRoutesAttendant';
-import Stock from './Stock';
-import ManageUser from './ManageUser';
+import AdminManageProducts from './components/AdminManageProducts';
+import AdminPage from './components/AdminPage';
+import AttendantPage from './components/AttendantPage';
+import Transact from './components/Transact';
+import Login from './components/LoginPage';
+import LoginButton from './components/Login';
+import PrivateRoutesAdmin from './utils/PrivateRoutesAdmin';
+import PrivateRoutesAttendant from './utils/PrivateRoutesAttendant';
+import Stock from './components/Stock';
+import ManageUser from './components/ManageUser';
 
 const App = () => {
   return (

@@ -13,6 +13,5 @@ exports.createUser = async (req, res) => {
       status: 'error',
       message: err.message,
     });
-    console.log(err);
   }
 };

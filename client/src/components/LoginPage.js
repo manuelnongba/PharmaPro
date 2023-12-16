@@ -6,17 +6,14 @@ import PrivateRoutes from '../utils/PrivateRoutesAdmin';
 import PrivateRoutesAttendant from '../utils/PrivateRoutesAttendant';
 import styles from '../styles/LoginPage.module.css';
 
-const Login = (props) => {
-  // Declare a new state variable, which we'll call "formData"
+const Login = (getUser, user) => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
-
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
-    // Update the formData state with the new values from the input fields
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
@@ -24,14 +21,9 @@ const Login = (props) => {
   };
 
   const handleSubmit = async (event) => {
-    // Prevent the default form submission behavior
     event.preventDefault();
+    getUser(formData);
 
-    // TODO: Add code to submit the formData to a server or call an authentication function
-
-    props.getUser(formData);
-
-    // Clear the form fields after submission
     setFormData({
       username: '',
       password: '',
@@ -39,18 +31,14 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    if (!props.user) {
+    if (!user) {
       <div></div>;
-    } else if (props.user.user.role === 'admin') {
-      setTimeout(() => {
-        navigate('/admin/dashboard');
-      }, 1000);
-    } else if (props.user.user.role === 'attendant') {
-      setTimeout(() => {
-        navigate('/attendant/dashboard');
-      }, 1000);
+    } else if (user.user.role === 'admin') {
+      navigate('/admin/dashboard');
+    } else if (user.user.role === 'attendant') {
+      navigate('/attendant/dashboard');
     }
-  }, [props, navigate]);
+  }, [user, navigate]);
 
   return (
     <div className={styles.loginpage}>

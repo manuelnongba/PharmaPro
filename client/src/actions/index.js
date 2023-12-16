@@ -51,15 +51,13 @@ export const addProduct = (formState) => async (dispatch) => {
 
     dispatch({ type: 'ADD_PRODUCT', payload: response.data });
     showAlert('success', 'Product successfully added!');
-    setTimeout(() => {
-      window.location.reload();
-    }, 1500);
   } catch (err) {
-    if (err.response.data.message.code === 11000)
+    if (err.response.data.message.code === 11000) {
       showAlert(
         'error',
         `Duplicate field value: ${err.response.data.message.keyValue.name}. Please use another value!`
       );
+    }
   }
 };
 

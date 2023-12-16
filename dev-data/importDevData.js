@@ -23,8 +23,7 @@ const users = JSON.parse(fs.readFileSync('./dev-data/users.json', 'utf-8'));
 console.log(process.argv);
 
 //Import data into database
-
-const importData = async () => {
+const importData = async (users) => {
   try {
     await User.create(users);
     console.log('Users successfully imported');
@@ -46,7 +45,7 @@ const deleteData = async () => {
 };
 
 if (process.argv[2] === '--import') {
-  importData();
+  importData(users);
 } else if (process.argv[2] === '--delete') {
   deleteData();
 }

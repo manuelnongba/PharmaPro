@@ -3,7 +3,7 @@ import React from 'react';
 import { showAlert } from '../utils/alert';
 import styles from '../styles/AdminHeader.module.css';
 
-const LogoutButton = () => {
+const Logout = () => {
   const onClick = async () => {
     try {
       const res = await axios.get('/api/logout');
@@ -28,4 +28,4 @@ const LogoutButton = () => {
   );
 };
 
-export default LogoutButton;
+export default Logout;

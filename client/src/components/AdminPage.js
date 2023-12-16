@@ -3,28 +3,8 @@ import AdminHeader from './AdminHeader';
 import { connect } from 'react-redux';
 import { getTransactions } from '../actions';
 import styles from '../styles/AdminPage.module.css';
-import {
-  Chart,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-  Tooltip,
-  Legend,
-  PointElement,
-  LineElement,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
 import ExpiredProducts from './ExpiredProducts';
-
-Chart.register(
-  BarElement,
-  CategoryScale,
-  LinearScale,
-  Tooltip,
-  Legend,
-  PointElement,
-  LineElement
-);
+import ChartData from './ChartData';
 
 const AdminPage = ({ transaction, getTransactions }) => {
   const [trans, setTrans] = useState([]);
@@ -59,49 +39,6 @@ const AdminPage = ({ transaction, getTransactions }) => {
     setTotalSales(sSum);
   }, [transaction]);
 
-  let topFiveNames;
-  let topFiveSalesFinal;
-
-  if (transaction && transaction.transactions) {
-    const topSales = transaction.transactions.map((el) => {
-      return el.sales;
-    });
-    const topFiveSales = topSales.sort((a, b) => b - a).slice(0, 5);
-
-    const topNames = [];
-    const topS = [];
-
-    transaction.transactions.forEach((trans) => {
-      topFiveSales.forEach((val) => {
-        if (trans.sales === val) {
-          // console.log(trans.name);
-          if (!topNames.includes(trans.name)) {
-            topS.push(trans.sales);
-            topNames.push(trans.name);
-          }
-        }
-      });
-    });
-
-    topFiveSalesFinal = topS.slice(0, 5);
-    topFiveNames = topNames.slice(0, 5);
-  }
-
-  const data = {
-    labels: topFiveNames,
-    datasets: [
-      {
-        label: '369',
-        data: topFiveSalesFinal,
-        backgroundColor: '#b2f2bb',
-        borderColor: '#adb5bd',
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const options = {};
-
   return (
     <div>
       <AdminHeader />
@@ -131,9 +68,7 @@ const AdminPage = ({ transaction, getTransactions }) => {
             <h2>Total Quantity</h2>
             <div className={styles.totalquantity}>{totalQuantity}</div>
           </div>
-          <div className={styles.graph}>
-            <Bar data={data} options={options} className={styles.linegraph} />
-          </div>
+          <ChartData transaction={transaction} />
           <div className={styles.expiredproducts}>
             <ExpiredProducts />
           </div>

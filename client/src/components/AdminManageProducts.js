@@ -5,7 +5,12 @@ import { addProduct } from '../actions';
 import { getProducts } from '../actions';
 import styles from '../styles/AdminManage.module.css';
 
-const AdminManageProducts = ({ getProducts, products, addProduct }) => {
+const AdminManageProducts = ({
+  getProducts,
+  products,
+  addProduct,
+  newProduct,
+}) => {
   const [formState, setFormState] = useState({
     name: '',
     price: '',
@@ -15,21 +20,15 @@ const AdminManageProducts = ({ getProducts, products, addProduct }) => {
     stockCount: '',
     expiryDate: '',
   });
-
   const [productsList, setProductsList] = useState();
 
   useEffect(() => {
     getProducts();
-  }, [getProducts]);
+  }, [getProducts, newProduct]);
 
   useEffect(() => {
     if (products && products.products) {
-      console.log(products);
-      const itemsList = products.products.map((product) => {
-        return product.name;
-      });
-
-      itemsList.sort();
+      const itemsList = products.products.map((product) => product.name).sort();
 
       const items = itemsList.map((product, id) => {
         return <p key={id}>{product}</p>;
@@ -39,7 +38,6 @@ const AdminManageProducts = ({ getProducts, products, addProduct }) => {
     }
   }, [products]);
 
-  // Function to handle changes to the form fields
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -49,17 +47,10 @@ const AdminManageProducts = ({ getProducts, products, addProduct }) => {
     });
   };
 
-  console.log(formState);
-
-  // Function to handle submission of the form
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Add the drug to the database here...
-
     addProduct(formState);
-
-    // if (products && products.message === "success") window.location.reload();
   };
 
   return (

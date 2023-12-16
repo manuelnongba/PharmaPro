@@ -2,14 +2,11 @@ const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 
-const signToken = (id, role) =>
-  jwt.sign({ id, role }, process.env.JWT_SECRET, {
+const signToken = (id, role) => {
+  return jwt.sign({ id, role }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
-
-// exports.home = async (req, res, next) => {
-//   res.send("Arrived");
-// };
+};
 
 exports.login = async (req, res, next) => {
   try {
@@ -25,7 +22,9 @@ exports.login = async (req, res, next) => {
       throw new Error('Incorrect username or password');
     }
 
-    const token = signToken(user._id, user.role);
+    const { _id, role } = user;
+
+    const token = signToken(_id, role);
 
     const cookieOptions = {
       expires: new Date(
@@ -36,8 +35,6 @@ exports.login = async (req, res, next) => {
     };
 
     res.cookie('jwt', token, cookieOptions);
-
-    const { _id, role } = user;
 
     res.status(200).json({
       status: 'success',

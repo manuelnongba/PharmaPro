@@ -11,12 +11,12 @@ class ExpiredProducts extends React.Component {
         this.setState({ expiredProducts: response.data.expiredProducts })
       );
   }
+
   expiredProducts = () => {
     return this.state.expiredProducts.map((product) => {
       const date = new Date(product.expiryDate);
       const formattedDate = date.toLocaleDateString('en-GH');
 
-      console.log(formattedDate);
       return (
         <tbody key={product._id}>
           <tr>
