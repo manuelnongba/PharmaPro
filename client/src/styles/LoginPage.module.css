@@ -1,17 +1,25 @@
-.loginpage {
-  position: relative;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.loginpage form {
-  display: flex;
-  margin: 200px auto;
+body {
+  font-family: sans-serif;
+  font-size: 10px;
+  background: #dee2e6;
+  height: 100vh;
+}
+
+.login {
+  margin: 250px auto;
+
   flex-direction: column;
-  gap: 32px;
-  justify-content: center;
+  display: flex;
   align-items: center;
 }
 
-.loginpage button {
+.login button {
   display: inline-block;
   font-size: 16px;
   font-weight: bold;
@@ -21,29 +29,16 @@
   color: #fff;
   padding: 8px 12px;
   border-radius: 10px;
-  width: 5.5rem;
   height: 2.5rem;
 }
 
-.loginpage input {
-  font-size: 16px;
-  width: 16rem;
-  height: 3rem;
-  padding: 10px 10px;
-  border: 0.1px solid gray;
-  border-radius: 10px;
-}
-
-.icon {
+.logo {
+  stroke: #1c7ed6;
   width: 5rem;
-  margin-left: 50px;
-  margin-top: 20px;
 }
 
-.loginpage input:focus {
-  outline: none;
-  border-bottom: 3px solid #55c57a;
-}
-.loginpage input:focus:invalid {
-  border-bottom: 3px solid #ff7730;
+.login p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
 }

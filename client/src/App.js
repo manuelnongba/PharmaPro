@@ -1,15 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AdminManageProducts from './components/AdminManageProducts';
-import AdminPage from './components/AdminPage';
-import AttendantPage from './components/AttendantPage';
-import Transact from './components/Transact';
-import Login from './components/LoginPage';
-import LoginButton from './components/Login';
+import Transact from './containers/products/Transact';
 import PrivateRoutesAdmin from './utils/PrivateRoutesAdmin';
 import PrivateRoutesAttendant from './utils/PrivateRoutesAttendant';
-import Stock from './components/Stock';
-import ManageUser from './components/ManageUser';
+import AttendantDashboard from './containers/users/AttendantDashboard';
+import ManageProducts from './containers/products/ManageProducts';
+import AdminDashboard from './containers/users/AdminDashboard';
+import Login from './containers/authentication/Login';
+import LoginPage from './containers/authentication/LoginPage';
+import Stock from './containers/products/Stock';
+import ManageUser from './containers/users/ManageUser';
 
 const App = () => {
   return (
@@ -18,11 +18,15 @@ const App = () => {
         <div>
           <Routes>
             <Route element={<PrivateRoutesAdmin />}>
-              <Route element={<AdminPage />} path="/admin/dashboard" exact />
+              <Route
+                element={<AdminDashboard />}
+                path="/admin/dashboard"
+                exact
+              />
               <Route
                 path="/admin/manageproducts"
                 exact
-                element={<AdminManageProducts />}
+                element={<ManageProducts />}
               />
               <Route path="/admin/transact" exact element={<Transact />} />
               <Route path="/admin/stock" exact element={<Stock />} />
@@ -30,7 +34,7 @@ const App = () => {
             </Route>
             <Route element={<PrivateRoutesAttendant />}>
               <Route
-                element={<AttendantPage />}
+                element={<AttendantDashboard />}
                 path="/attendant/dashboard"
                 exact
               />
@@ -38,7 +42,7 @@ const App = () => {
               <Route path="/admin/stock" exact element={<Stock />} />
             </Route>
             <Route exact path="/login" element={<Login />} />
-            <Route exact path="/" element={<LoginButton />} />
+            <Route exact path="/" element={<LoginPage />} />
           </Routes>
         </div>
       </BrowserRouter>

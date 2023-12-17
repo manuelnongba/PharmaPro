@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import AdminHeader from './AdminHeader';
-import { getProducts } from '../actions';
-import styles from '../styles/Stock.module.css';
+import AdminHeader from '../../components/AdminHeader';
+import { getProducts } from '../../actions';
+import styles from '../../styles/Stock.module.css';
 
 class Stock extends React.Component {
   componentDidMount = () => {

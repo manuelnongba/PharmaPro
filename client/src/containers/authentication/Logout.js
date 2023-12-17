@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React from 'react';
-import { showAlert } from '../utils/alert';
-import styles from '../styles/AdminHeader.module.css';
+import { showAlert } from '../../utils/alert';
+import styles from '../../styles/AdminHeader.module.css';
+import Button from '../../components/Button';
 
 const Logout = () => {
   const onClick = async () => {
@@ -11,7 +12,7 @@ const Logout = () => {
       if ((res.data.status = 'success')) {
         setTimeout(() => {
           window.location.replace('/login');
-        }, 1500);
+        }, 500);
       }
       showAlert('success', 'You successfully logged out!');
     } catch (error) {
@@ -21,9 +22,7 @@ const Logout = () => {
 
   return (
     <div>
-      <button onClick={onClick} className={styles.logout}>
-        Logout
-      </button>
+      <Button callback={onClick} className={styles.logout} text="Logout" />
     </div>
   );
 };

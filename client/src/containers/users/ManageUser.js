@@ -1,8 +1,9 @@
 import React from 'react';
-import { createUser } from '../actions';
+import { createUser } from '../../actions';
 import { connect } from 'react-redux';
-import AdminHeader from './AdminHeader';
-import styles from '../styles/AdminManage.module.css';
+import AdminHeader from '../../components/AdminHeader';
+import styles from '../../styles/Manage.module.css';
+import Button from '../../components/Button';
 
 class ManageUsers extends React.Component {
   state = {
@@ -85,7 +86,7 @@ class ManageUsers extends React.Component {
               placeholder="password"
             />
 
-            <button type="submit">Add User</button>
+            <Button type="submit" text="Add User" />
           </form>
         </div>
       </div>

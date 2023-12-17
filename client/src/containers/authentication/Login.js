@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getUser } from '../actions';
-import PrivateRoutes from '../utils/PrivateRoutesAdmin';
-import PrivateRoutesAttendant from '../utils/PrivateRoutesAttendant';
-import styles from '../styles/LoginPage.module.css';
+import { getUser } from '../../actions';
+import PrivateRoutes from '../../utils/PrivateRoutesAdmin';
+import PrivateRoutesAttendant from '../../utils/PrivateRoutesAttendant';
+import styles from '../../styles/Login.module.css';
+import Button from '../../components/Button';
 
 const Login = ({ getUser, user }) => {
   const [formData, setFormData] = useState({
@@ -67,7 +68,7 @@ const Login = ({ getUser, user }) => {
           minLength="8"
         />
 
-        <button type="submit">Login</button>
+        <Button type="submit" text="Login" />
       </form>
       <PrivateRoutes />
       <PrivateRoutesAttendant />

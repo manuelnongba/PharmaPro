@@ -1,8 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from '../styles/Login.module.css';
+import styles from '../../styles/LoginPage.module.css';
+import Button from '../../components/Button';
 
-const LoginButton = () => {
+const LoginPage = () => {
   return (
     <div className={styles.login}>
       <img
@@ -15,9 +16,9 @@ const LoginButton = () => {
       <p>Login with your account to continue</p>
 
       <NavLink to="/login">
-        <button>Login</button>
+        <Button text="Proceed to Login" />
       </NavLink>
     </div>
   );
 };
-export default LoginButton;
+export default LoginPage;

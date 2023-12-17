@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import AdminHeader from './AdminHeader';
-import { addProduct } from '../actions';
-import { getProducts } from '../actions';
-import styles from '../styles/AdminManage.module.css';
+import AdminHeader from '../../components/AdminHeader';
+import { addProduct } from '../../actions';
+import { getProducts } from '../../actions';
+import styles from '../../styles/Manage.module.css';
+import Button from '../../components/Button';
 
 const AdminManageProducts = ({
   getProducts,
@@ -125,7 +126,7 @@ const AdminManageProducts = ({
             onChange={handleChange}
           />
 
-          <button type="submit">Add Item</button>
+          <Button type="submit" text="Add Item" />
         </form>
 
         <div className={styles.products}>

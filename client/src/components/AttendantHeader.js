@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Logout from './Logout';
+import Logout from '../containers/authentication/Logout';
 import styles from '../styles/AttendantHeader.module.css';
 
 const AttendantHeader = () => {

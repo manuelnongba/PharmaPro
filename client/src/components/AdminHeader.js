@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import Logout from './Logout';
+import Logout from '../containers/authentication/Logout';
 import styles from '../styles/AdminHeader.module.css';
 
 const AdminHeader = () => {

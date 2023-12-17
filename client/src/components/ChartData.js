@@ -10,7 +10,7 @@ import {
   LineElement,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import styles from '../styles/AdminPage.module.css';
+import styles from '../styles/AdminDashboard.module.css';
 
 Chart.register(
   BarElement,
@@ -22,31 +22,13 @@ Chart.register(
   LineElement
 );
 
-function ChartData({ transaction }) {
-  let topFiveNames;
-  let topFiveSalesFinal;
-  let gSales = {};
-
-  if (transaction && transaction.transactions) {
-    transaction.transactions.forEach((el) => {
-      gSales[el.name] = (gSales[el.name] || 0) + el.sales;
-    });
-
-    topFiveNames = Object.keys(gSales)
-      .sort((a, b) => gSales[b] - gSales[a])
-      .slice(0, 5);
-
-    topFiveSalesFinal = Object.values(gSales)
-      .sort((a, b) => b - a)
-      .slice(0, 5);
-  }
-
+function ChartData({ labels, chartData }) {
   const data = {
-    labels: topFiveNames,
+    labels: labels,
     datasets: [
       {
         label: '369',
-        data: topFiveSalesFinal,
+        data: chartData,
         backgroundColor: '#b2f2bb',
         borderColor: '#adb5bd',
         borderWidth: 1,

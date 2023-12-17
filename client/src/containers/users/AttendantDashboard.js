@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import AttendantHeader from './AttendantHeader';
+import AttendantHeader from '../../components/AttendantHeader';
 import { connect } from 'react-redux';
-import { getTransactions } from '../actions';
-import styles from '../styles/AttendantPage.module.css';
-import ExpiredProducts from './ExpiredProducts';
+import { getTransactions } from '../../actions';
+import ExpiredProducts from '../products/ExpiredProducts';
+import styles from '../../styles/AttendantDashboard.module.css';
 
 const AttendantPage = ({ getTransactions, transactions }) => {
   const [trans, setTrans] = useState([]);

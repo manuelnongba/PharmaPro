@@ -1,19 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
-import { getProducts } from '../actions';
-import AttendantHeader from './AttendantHeader';
-import { searchProduct } from '../actions';
-import { addTransactions } from '../actions';
-import { getLoggedInUser } from '../actions';
-import { currentTransaction } from '../actions';
-import { getCurrentTransactions } from '../actions';
-import { deleteTransaction } from '../actions';
-import { updateStock } from '../actions';
+import { getProducts } from '../../actions';
+import AttendantHeader from '../../components/AttendantHeader';
+import { searchProduct } from '../../actions';
+import { addTransactions } from '../../actions';
+import { getLoggedInUser } from '../../actions';
+import { currentTransaction } from '../../actions';
+import { getCurrentTransactions } from '../../actions';
+import { deleteTransaction } from '../../actions';
+import { updateStock } from '../../actions';
 import ReactToPrint from 'react-to-print';
-import styles from '../styles/Transact.module.css';
-import AdminHeader from './AdminHeader';
+import AdminHeader from '../../components/AdminHeader';
 import axios from 'axios';
-import { showAlert } from '../utils/alert';
+import { showAlert } from '../../utils/alert';
+import Button from '../../components/Button';
+import styles from '../../styles/Transact.module.css';
 
 const Transact = ({
   getProducts,
@@ -144,7 +145,7 @@ const Transact = ({
                   setTotalSales(totalSales - list.sales);
                 }}
               >
-                X
+                <ion-icon name="trash-outline"></ion-icon>
               </button>
             </td>
           </tr>
@@ -218,9 +219,7 @@ const Transact = ({
             />
           </label>
           {formError && <p className="error">{formError}</p>}
-          <button type="submit" value="Add Item">
-            Add Item
-          </button>
+          <Button type="submit" text="Add Item" />
         </form>
         <div className={styles.transact}>
           <div ref={(el) => (componentRef = el)} className={styles.saleslist}>
@@ -239,14 +238,12 @@ const Transact = ({
 
           <ReactToPrint
             trigger={() => {
-              return <button>Print</button>;
+              return <Button text="Print" className={styles.btnprint} />;
             }}
             onAfterPrint={async () => {
               addTransactions(formState);
-              console.log(formState);
 
               formState.forEach((product) => {
-                console.log(product);
                 updateStock(product.name, product.quantity);
               });
               await axios.delete('/api/delete-all-current-transactions');
