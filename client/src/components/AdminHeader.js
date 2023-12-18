@@ -47,7 +47,6 @@ const AdminHeader = () => {
         <NavLink to="/admin/dashboard">Dashboard</NavLink>
         <NavLink to="/admin/manageproducts">Manage Products</NavLink>
         <NavLink to="/admin/transact">Transact</NavLink>
-        <NavLink to="/admin/stock">Stock</NavLink>
         <NavLink to="/admin/manageusers">Manage Users</NavLink>
       </div>
       <Logout />

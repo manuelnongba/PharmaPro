@@ -4,42 +4,42 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 62.5%;
-}
-
 body {
   font-family: sans-serif;
   background: #dee2e6;
-  height: 100vh;
 }
 
 .login {
-  margin: 25rem auto;
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin: 14rem auto;
+}
+
+.login a {
+  text-decoration: none;
 }
 
 .login button {
-  display: inline-block;
-  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
   font-weight: bold;
   background-color: #12b886;
   border: none;
   cursor: pointer;
   color: #fff;
-  padding: 8px 12px;
+  padding: 1px 12px;
   border-radius: 10px;
-  height: 4rem;
+  height: 2.5rem;
 }
 
 [name='arrow-forward-outline'] {
-  position: relative;
-  top: 0.35rem;
-  left: 0.4rem;
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .logo {
@@ -48,7 +48,7 @@ body {
 }
 
 .login p {
-  font-size: 1.4rem;
+  font-size: 1rem;
   line-height: 1.5;
   margin-bottom: 1rem;
 }

@@ -18,38 +18,62 @@
 .transactions {
   max-width: auto;
   padding: 10px 3rem;
-  background-color: #fff;
 }
 
 .transactions h2 {
   color: #495057;
   width: 100px;
-  margin: 20px auto;
+}
+
+.transactions p {
+  display: inline-block;
 }
 
 .transactionslist {
   width: 26rem;
-  height: 80vh;
+
   border-collapse: collapse;
   font-size: 12px;
   color: #495057;
+}
+
+.transcontent {
+  height: 590px;
   overflow: auto;
 }
 
-.transactionslist thead {
-  background-color: rgb(160, 189, 219);
+.transactionslist .transitem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
 }
 
-.transactionslist table {
-  border-collapse: collapse;
+.transheader {
+  margin: 20px 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.transactionslist th,
-.transactionslist td {
-  padding: 14px 16px;
-  text-align: left;
-  border-bottom: 0.5px solid #adb5bd;
-  width: 8rem;
+.transheader h3 {
+  flex: 1;
+}
+
+.transheader span {
+  position: relative;
+  left: 5px;
+  bottom: 2px;
+}
+
+.transitem p {
+  flex: 1;
 }
 
 .details {

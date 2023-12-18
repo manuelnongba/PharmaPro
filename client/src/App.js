@@ -29,7 +29,6 @@ const App = () => {
                 element={<ManageProducts />}
               />
               <Route path="/admin/transact" exact element={<Transact />} />
-              <Route path="/admin/stock" exact element={<Stock />} />
               <Route path="/admin/manageusers" exact element={<ManageUser />} />
             </Route>
             <Route element={<PrivateRoutesAttendant />}>

@@ -1,55 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import AttendantHeader from '../../components/AttendantHeader';
-import { connect } from 'react-redux';
-import { getTransactions } from '../../actions';
 import ExpiredProducts from '../products/ExpiredProducts';
 import styles from '../../styles/AttendantDashboard.module.css';
+import Transactions from '../../components/Transactions';
 
-const AttendantPage = ({ getTransactions, transactions }) => {
-  const [trans, setTrans] = useState([]);
-
-  useEffect(() => {
-    getTransactions();
-  }, [getTransactions]);
-
-  useEffect(() => {
-    if (transactions && transactions.transactions) {
-      setTrans(
-        transactions.transactions.map((trans) => {
-          return (
-            <tbody key={trans._id}>
-              <tr>
-                <td>{trans.name}</td>
-                <td>{trans.quantity}</td>
-                <td>{trans.sales}</td>
-              </tr>
-            </tbody>
-          );
-        })
-      );
-    }
-  }, [transactions]);
-
+const AttendantPage = () => {
   return (
     <div>
       <AttendantHeader />
       <div className={styles.attendantpage}>
-        <div className={styles.transactions}>
-          <h2>TRANSACTIONS</h2>
-
-          <div className={styles.transactionslist}>
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Quantity</th>
-                  <th>Sales</th>
-                </tr>
-              </thead>
-              {trans}
-            </table>
-          </div>
-        </div>
+        <Transactions />
         <div className={styles.expiredproducts}>
           <ExpiredProducts />
         </div>
@@ -58,8 +18,4 @@ const AttendantPage = ({ getTransactions, transactions }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { transactions: state.transactions };
-};
-
-export default connect(mapStateToProps, { getTransactions })(AttendantPage);
+export default AttendantPage;

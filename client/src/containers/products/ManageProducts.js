@@ -5,6 +5,7 @@ import { addProduct } from '../../actions';
 import { getProducts } from '../../actions';
 import styles from '../../styles/Manage.module.css';
 import Button from '../../components/Button';
+import Stock from './Stock';
 
 const AdminManageProducts = ({
   getProducts,
@@ -129,10 +130,11 @@ const AdminManageProducts = ({
           <Button type="submit" text="Add Item" />
         </form>
 
-        <div className={styles.products}>
+        {/* <div className={styles.products}>
           <h2>Products</h2>
           <div className={styles.productslist}>{productsList}</div>
-        </div>
+        </div> */}
+        <Stock />
       </div>
     </div>
   );

@@ -1,36 +1,48 @@
 .stocktable {
-  margin: 30px 100px;
+  margin: 0px 100px;
   width: 36rem;
-  height: 80vh;
+  /* height: 80vh; */
   border-collapse: collapse;
   font-size: 12px;
   color: #495057;
-  overflow: auto;
+  /* overflow: auto; */
   font-size: 16px;
 }
 
-.stocktable thead {
-  background-color: #2b8a3e;
-  color: #fff;
+.stockcontent {
+  height: 75vh;
+  overflow: auto;
 }
 
-.stocktable table {
-  border-collapse: collapse;
-  width: 25rem;
+.stocktable .stockitem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
 }
 
-.stocktable th,
-.stocktable td {
-  padding: 14px 16px;
-  text-align: left;
-  border-bottom: 0.5px solid #adb5bd;
-  width: 8rem;
+.stockheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+  margin: 0 8px;
 }
 
-.stocktable .evenrow {
-  background-color: #f1f3f5;
+@media (max-width: 70em) {
+  .stocktable {
+    margin: 0;
+  }
 }
 
-.stocktable .oddrow:nth-child(odd) {
-  color: #2f9e44;
+@media (max-width: 655px) {
+  .stocktable {
+    width: 20rem;
+  }
 }

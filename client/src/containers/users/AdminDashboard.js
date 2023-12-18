@@ -5,48 +5,20 @@ import { getTransactions } from '../../actions';
 import ExpiredProducts from '../products/ExpiredProducts';
 import ChartData from '../../components/ChartData';
 import styles from '../../styles/AdminDashboard.module.css';
+import Transactions from '../../components/Transactions';
 
-const AdminPage = ({ transaction, getTransactions }) => {
-  const [trans, setTrans] = useState([]);
+const AdminPage = ({ transactions, getTransactions }) => {
   const [totalQuantity, setTotalQuantity] = useState(null);
   const [totalSales, setTotalSales] = useState(null);
   const [chartLabels, setChartLabels] = useState();
   const [chartData, setChartData] = useState();
 
   useEffect(() => {
-    getTransactions();
-  }, [getTransactions]);
-
-  useEffect(() => {
-    let qSum = 0;
-    let sSum = 0;
-    if (transaction && transaction.transactions) {
-      setTrans(
-        transaction.transactions.map((trans) => {
-          qSum += trans.quantity;
-          sSum += trans.sales;
-          return (
-            <tbody key={trans._id}>
-              <tr>
-                <td>{trans.name}</td>
-                <td>{trans.quantity}</td>
-                <td>{trans.sales}</td>
-              </tr>
-            </tbody>
-          );
-        })
-      );
-    }
-    setTotalQuantity(qSum);
-    setTotalSales(sSum);
-  }, [transaction]);
-
-  useEffect(() => {
     (function getChartData() {
       let gSales = {};
 
-      if (transaction && transaction.transactions) {
-        transaction.transactions.forEach((el) => {
+      if (transactions && transactions.transactions) {
+        transactions.transactions.forEach((el) => {
           gSales[el.name] = (gSales[el.name] || 0) + el.sales;
         });
 
@@ -62,28 +34,16 @@ const AdminPage = ({ transaction, getTransactions }) => {
         setChartData(chartData);
       }
     })();
-  }, [transaction]);
+  }, [transactions]);
 
   return (
     <div>
       <AdminHeader />
       <div className={styles.adminpage}>
-        <div className={styles.transactions}>
-          <h2>TRANSACTIONS</h2>
-
-          <div className={styles.transactionslist}>
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Quantity</th>
-                  <th>Sales</th>
-                </tr>
-              </thead>
-              {trans}
-            </table>
-          </div>
-        </div>
+        <Transactions
+          setTotalQuantity={setTotalQuantity}
+          setTotalSales={setTotalSales}
+        />
         <div className={styles.details}>
           <div className={styles.sales}>
             <h2>Total Sales</h2>
@@ -104,7 +64,7 @@ const AdminPage = ({ transaction, getTransactions }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { transaction: state.transactions };
+  return { transactions: state.transactions };
 };
 
 export default connect(mapStateToProps, { getTransactions })(AdminPage);

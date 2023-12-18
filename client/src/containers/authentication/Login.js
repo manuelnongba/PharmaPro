@@ -12,6 +12,7 @@ const Login = ({ getUser, user }) => {
     username: '',
     password: '',
   });
+  const [disabled, setDisabled] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
@@ -29,17 +30,19 @@ const Login = ({ getUser, user }) => {
       username: '',
       password: '',
     });
+    setDisabled(true);
   };
 
   useEffect(() => {
     if (!user) {
+      setDisabled(false);
       <div></div>;
     } else if (user.user.role === 'admin') {
       navigate('/admin/dashboard');
     } else if (user.user.role === 'attendant') {
       navigate('/attendant/dashboard');
     }
-  }, [user, navigate]);
+  }, [user, disabled, navigate]);
 
   return (
     <div className={styles.loginpage}>
@@ -71,7 +74,7 @@ const Login = ({ getUser, user }) => {
             minLength="8"
           />
 
-          <Button type="submit" text="Login" />
+          <Button type="submit" text="Login" disabled={disabled} />
         </form>
         <PrivateRoutes />
         <PrivateRoutesAttendant />
