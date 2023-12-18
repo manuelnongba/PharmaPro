@@ -25,4 +25,4 @@ From your terminal :
 npm start
 ```
 
-This will start both the Node.js and React Server with concurrently.
+This will start the Node.js server and React with concurrently.
