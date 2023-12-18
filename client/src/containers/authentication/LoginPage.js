@@ -16,7 +16,10 @@ const LoginPage = () => {
       <p>Login with your account to continue</p>
 
       <NavLink to="/login">
-        <Button text="Proceed to Login" />
+        <Button
+          text="Proceed to Login"
+          icon={<ion-icon name="arrow-forward-outline"></ion-icon>}
+        />
       </NavLink>
     </div>
   );

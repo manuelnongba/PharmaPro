@@ -134,8 +134,8 @@ const Transact = ({
             <td>{list.quantity}</td>
             <td>{list.sales}</td>
             <td>
-              <button
-                onClick={() => {
+              <Button
+                callback={() => {
                   deleteTransaction(list._id);
 
                   formState.splice(i, 1);
@@ -144,9 +144,8 @@ const Transact = ({
 
                   setTotalSales(totalSales - list.sales);
                 }}
-              >
-                <ion-icon name="trash-outline"></ion-icon>
-              </button>
+                icon={<ion-icon name="trash-outline"></ion-icon>}
+              />
             </td>
           </tr>
         </tbody>

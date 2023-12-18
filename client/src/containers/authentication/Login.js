@@ -43,35 +43,39 @@ const Login = ({ getUser, user }) => {
 
   return (
     <div className={styles.loginpage}>
-      <img
-        src="https://res.cloudinary.com/drxwuqu3v/image/upload/v1672880675/logo_tiappr.svg"
-        alt="pharmapro-logo"
-        className={styles.icon}
-      />
-
-      <form className="form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleInputChange}
-          placeholder="username"
-          minLength="5"
+      <div className={styles.bgimg}>
+        <img src="./loginimg.svg" alt="pharmacy" />
+      </div>
+      <div className={styles.loginform}>
+        <img
+          src="https://res.cloudinary.com/drxwuqu3v/image/upload/v1672880675/logo_tiappr.svg"
+          alt="pharmapro-logo"
+          className={styles.icon}
         />
+        <form className="form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleInputChange}
+            placeholder="username"
+            minLength="5"
+          />
 
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleInputChange}
-          placeholder="password"
-          minLength="8"
-        />
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+            placeholder="password"
+            minLength="8"
+          />
 
-        <Button type="submit" text="Login" />
-      </form>
-      <PrivateRoutes />
-      <PrivateRoutesAttendant />
+          <Button type="submit" text="Login" />
+        </form>
+        <PrivateRoutes />
+        <PrivateRoutesAttendant />
+      </div>
     </div>
   );
 };

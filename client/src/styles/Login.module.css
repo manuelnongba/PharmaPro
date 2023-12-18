@@ -1,17 +1,38 @@
 .loginpage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bgimg {
+  width: 50%;
+  height: 100vh;
   position: relative;
 }
 
-.loginpage form {
+.loginpage .bgimg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.loginform {
   display: flex;
-  margin: 200px auto;
+  align-items: center;
+  gap: 4rem;
   flex-direction: column;
-  gap: 32px;
+  flex-grow: 1;
+}
+
+.loginform form {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
   justify-content: center;
   align-items: center;
 }
 
-.loginpage button {
+.loginform button {
   display: inline-block;
   font-size: 16px;
   font-weight: bold;
@@ -21,29 +42,27 @@
   color: #fff;
   padding: 8px 12px;
   border-radius: 10px;
-  width: 5.5rem;
-  height: 2.5rem;
+  width: 10rem;
+  height: 3.5rem;
 }
 
-.loginpage input {
+.loginform input {
   font-size: 16px;
-  width: 16rem;
-  height: 3rem;
+  width: 25rem;
+  height: 4rem;
   padding: 10px 10px;
   border: 0.1px solid gray;
   border-radius: 10px;
 }
 
 .icon {
-  width: 5rem;
-  margin-left: 50px;
-  margin-top: 20px;
+  width: 10rem;
 }
 
-.loginpage input:focus {
+.loginform input:focus {
   outline: none;
   border-bottom: 3px solid #55c57a;
 }
-.loginpage input:focus:invalid {
+.loginform input:focus:invalid {
   border-bottom: 3px solid #ff7730;
 }
