@@ -16,7 +16,7 @@ export const createUser = (formData) => async (dispatch) => {
   }
 };
 
-export const getUser = (formData) => async (dispatch) => {
+export const login = (formData) => async (dispatch) => {
   try {
     const response = await axios({
       method: 'POST',
@@ -28,6 +28,7 @@ export const getUser = (formData) => async (dispatch) => {
     showAlert('success', 'Logged In Successfully!');
   } catch (err) {
     showAlert('error', err.response.data.message);
+    throw new Error(err);
   }
 };
 
@@ -38,6 +39,7 @@ export const getLoggedInUser = () => async (dispatch) => {
     dispatch({ type: 'CURRENT_USER', payload: response.data });
   } catch (err) {
     // showAlert('error', 'User not found');
+    throw new Error(err);
   }
 };
 

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getUser } from '../../actions';
+import { login } from '../../actions';
 import PrivateRoutes from '../../utils/PrivateRoutesAdmin';
 import PrivateRoutesAttendant from '../../utils/PrivateRoutesAttendant';
 import styles from '../../styles/Login.module.css';
 import Button from '../../components/Button';
 
-const Login = ({ getUser, user }) => {
+const Login = ({ login, user }) => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -24,18 +24,23 @@ const Login = ({ getUser, user }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    getUser(formData);
+
+    setDisabled(true);
+
+    try {
+      await login(formData);
+    } catch (err) {
+      setDisabled(false);
+    }
 
     setFormData({
       username: '',
       password: '',
     });
-    setDisabled(true);
   };
 
   useEffect(() => {
     if (!user) {
-      setDisabled(false);
       <div></div>;
     } else if (user.user.role === 'admin') {
       navigate('/admin/dashboard');
@@ -64,7 +69,6 @@ const Login = ({ getUser, user }) => {
             placeholder="username"
             minLength="5"
           />
-
           <input
             type="password"
             name="password"
@@ -73,7 +77,6 @@ const Login = ({ getUser, user }) => {
             placeholder="password"
             minLength="8"
           />
-
           <Button type="submit" text="Login" disabled={disabled} />
         </form>
         <PrivateRoutes />
@@ -87,4 +90,4 @@ const mapStateToProps = (state) => {
   return { user: state.user };
 };
 
-export default connect(mapStateToProps, { getUser })(Login);
+export default connect(mapStateToProps, { login })(Login);

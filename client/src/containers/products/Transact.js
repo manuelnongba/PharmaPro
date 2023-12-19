@@ -237,7 +237,9 @@ const Transact = ({
 
           <ReactToPrint
             trigger={() => {
-              return <button className={styles.btnprint}>Print</button>;
+              return (
+                <button className={styles.btnprint}>Confirm Purchase</button>
+              );
             }}
             onAfterPrint={async () => {
               addTransactions(formState);
