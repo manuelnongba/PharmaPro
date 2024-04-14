@@ -34,6 +34,7 @@ const Transact = ({
   const [result, setResult] = useState('');
   const [totalSales, setTotalSales] = useState(0);
   const [formState, setFormState] = useState([]);
+  const [displayList, setDisplayList] = useState();
   const quantityRef = useRef();
   const selectedProductNameRef = useRef();
 
@@ -49,13 +50,12 @@ const Transact = ({
     getCurrentTransactions();
   }, [getCurrentTransactions]);
 
-  useEffect(() => {
-    currentTransaction(formState);
-  }, [currentTransaction, formState]);
+  // useEffect(() => {
+  //   currentTransaction(formState);
+  // }, [currentTransaction, formState]);
 
   let productNames;
   let price = 0;
-  let displayList;
   let componentRef;
 
   const handleChange = (event) => {
@@ -66,7 +66,7 @@ const Transact = ({
     }
   };
 
-  if (products && products.productList) {
+  if (products?.productList) {
     productNames = products.productList.map((prod) => {
       if (result === prod.name) {
         price = prod.price;
@@ -109,7 +109,6 @@ const Transact = ({
     // setRemoveCount(removeCount + 1);
     if (products && products.productList) {
       products.productList.forEach((prod) => {
-        console.log(prod);
         if (prod.name === result && prod.stockcount <= 0)
           showAlert('error', `${result} out of stock`);
       });
@@ -125,33 +124,34 @@ const Transact = ({
     ]);
   };
 
-  if (currentTransactions && currentTransactions.currentTransaction) {
-    displayList = currentTransactions.currentTransaction.map((list, i) => {
-      return (
-        <tbody key={list._id}>
-          <tr>
-            <td>{list.name}</td>
-            <td>{list.quantity}</td>
-            <td>{list.sales}</td>
-            <td>
-              <Button
-                callback={() => {
-                  deleteTransaction(list._id);
+  useEffect(() => {
+    setDisplayList(
+      formState?.map((list, i) => {
+        return (
+          <tbody key={i}>
+            <tr>
+              <td>{list.name}</td>
+              <td>{list.quantity}</td>
+              <td>{list.sales}</td>
+              <td>
+                <Button
+                  callback={() => {
+                    // deleteTransaction(list._id);
 
-                  formState.splice(i, 1);
+                    formState.splice(i, 1);
 
-                  setFormState([...formState]);
-
-                  setTotalSales(totalSales - list.sales);
-                }}
-                icon={<ion-icon name="trash-outline"></ion-icon>}
-              />
-            </td>
-          </tr>
-        </tbody>
-      );
-    });
-  }
+                    setFormState([...formState]);
+                    setTotalSales(totalSales - list.sales);
+                  }}
+                  icon={<ion-icon name="trash-outline"></ion-icon>}
+                />
+              </td>
+            </tr>
+          </tbody>
+        );
+      })
+    );
+  }, [formState, currentTransactions, totalSales, deleteTransaction]);
 
   const divRef = useRef(null);
 
@@ -174,7 +174,7 @@ const Transact = ({
 
   return (
     <div>
-      {currentUser && currentUser.user.role === 'admin' ? (
+      {currentUser?.user?.role === 'admin' ? (
         <AdminHeader />
       ) : (
         <AttendantHeader />
@@ -242,6 +242,7 @@ const Transact = ({
               );
             }}
             onAfterPrint={async () => {
+              console.log(formState);
               addTransactions(formState);
 
               formState.forEach((product) => {

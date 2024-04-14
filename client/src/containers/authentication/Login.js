@@ -67,7 +67,6 @@ const Login = ({ login, user }) => {
             value={formData.username}
             onChange={handleInputChange}
             placeholder="username"
-            minLength="5"
           />
           <input
             type="password"
@@ -75,7 +74,6 @@ const Login = ({ login, user }) => {
             value={formData.password}
             onChange={handleInputChange}
             placeholder="password"
-            minLength="8"
           />
           <Button type="submit" text="Login" disabled={disabled} />
         </form>

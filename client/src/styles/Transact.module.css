@@ -87,13 +87,6 @@
   cursor: pointer;
   background-color: transparent;
   border: none;
-
-  /* padding: 1px 1px;
-  border: 0.5px solid #000;
-  border-radius: 50%; */
-  /* background-color: #f8f9fa;
-  width: 8rem;
-  height: 2rem; */
 }
 
 .btnprint {
@@ -125,7 +118,7 @@
   padding: 4px 16px;
   text-align: left;
   border-bottom: 0.5px solid #adb5bd;
-  width: 8rem;
+  width: auto;
 }
 
 .saleslist h2 {
@@ -151,5 +144,15 @@
     flex-direction: column;
 
     margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .transact {
+    width: 95%;
+  }
+
+  .searchproduct {
+    width: 95%;
   }
 }
